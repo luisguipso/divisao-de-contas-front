@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PeriodoService } from '../../service/periodo.service';
-import { Periodo } from '../../periodo';
+import { Periodo } from '../../domain/periodo';
 
 @Component({
   selector: 'app-periodo',

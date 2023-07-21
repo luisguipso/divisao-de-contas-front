@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Periodo } from '../../periodo';
+import { Periodo } from '../../domain/periodo';
 import { PeriodoService } from '../../service/periodo.service';
 
 @Component({

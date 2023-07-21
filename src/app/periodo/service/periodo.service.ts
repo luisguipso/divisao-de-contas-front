@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Periodo } from '../periodo';
+import { Periodo } from '../domain/periodo';
 import { Observable, catchError, of, throwError } from 'rxjs';
 import { PERIODOS } from '../mock-periodos';
 

@@ -1,4 +1,4 @@
-import { Periodo } from './periodo';
+import { Periodo } from './domain/periodo';
 
 export const PERIODOS: Periodo[] = [
   { id: 1, descricao: 'Julho/2023', valor: 1500.0 },
