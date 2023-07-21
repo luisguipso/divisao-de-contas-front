@@ -1,0 +1,8 @@
+<p>lista-periodo works!</p>
+<ul>
+  <li *ngFor="let periodo of periodos">
+    <a routerLink="/periodo/{{periodo.id}}">
+      <span>{{periodo.descricao}}</span> {{periodo.valor}}
+    </a>
+  </li>
+</ul>
