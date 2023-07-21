@@ -1,8 +1,17 @@
-<p>lista-periodo works!</p>
+<h1>Periodos</h1>
 <ul>
   <li *ngFor="let periodo of periodos">
     <a routerLink="/periodo/{{periodo.id}}">
-      <span>{{periodo.descricao}}</span> {{periodo.valor}}
+      <div class="container-fluid">
+        <div class="row justify-content-between">
+          <div class="col-4">
+            {{periodo.descricao}}
+          </div>
+          <div class="col-4">
+            {{periodo.valor | currency: 'BRL'}}
+          </div>
+        </div>
+      </div>
     </a>
   </li>
 </ul>

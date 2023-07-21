@@ -1,5 +1,5 @@
 export interface Periodo {
-  id: Number;
+  id: number;
   descricao: String;
-  valor: Number;
+  valor: number;
 }
