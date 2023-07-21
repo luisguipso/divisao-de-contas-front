@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { PERIODOS } from './periodo/mock-periodos';
-import { Periodo } from './periodo/periodo';
+import { Periodo } from '../periodo';
 import { Observable, catchError, of, throwError } from 'rxjs';
+import { PERIODOS } from '../mock-periodos';
 
 @Injectable({
   providedIn: 'root',

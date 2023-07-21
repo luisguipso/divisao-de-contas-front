@@ -1,7 +1,6 @@
-import { PeriodoService } from './../periodo.service';
 import { Component, OnInit } from '@angular/core';
-import { Periodo } from '../periodo/periodo';
-import { PERIODOS } from '../periodo/mock-periodos';
+import { Periodo } from '../../periodo';
+import { PeriodoService } from '../../service/periodo.service';
 
 @Component({
   selector: 'app-lista-periodo',
