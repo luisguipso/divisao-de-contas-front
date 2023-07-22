@@ -7,6 +7,8 @@ import { PERIODOS } from '../mock-periodos';
   providedIn: 'root',
 })
 export class PeriodoService {
+  constructor() {}
+
   getPeriodos(): Observable<Periodo[]> {
     return of(PERIODOS);
   }
@@ -19,6 +21,4 @@ export class PeriodoService {
       throw new Error('not found');
     }
   }
-
-  constructor() {}
 }

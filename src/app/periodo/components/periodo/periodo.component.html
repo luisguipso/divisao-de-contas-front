@@ -18,7 +18,7 @@
   </div>
 
   <div *ngFor="let despesa of despesas">
-    <div class="row justify-content-between  custom-table-row border-top">
+    <div class="row justify-content-between  custom-table-row border-top" routerLink="/despesa/{{despesa.id}}">
       <div class="col-4">
         {{despesa.descricao}}
       </div>

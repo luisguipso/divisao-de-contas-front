@@ -35,7 +35,7 @@ export class PeriodoComponent implements OnInit {
   getDespesas() {
     if (this.periodo)
       this.despesaService
-        .getDespesas(this.periodo?.id)
+        .getDespesasPorPeriodo(this.periodo?.id)
         .subscribe((despesas) => (this.despesas = despesas));
   }
 }

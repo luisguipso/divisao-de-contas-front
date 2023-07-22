@@ -9,7 +9,16 @@ import { DESPESAS } from '../despesa-mock';
 export class DespesaService {
   constructor() {}
 
-  getDespesas(id: Number): Observable<Despesa[]> {
-    return of(DESPESAS.filter((despesa) => despesa.periodo === id));
+  getDespesasPorPeriodo(idPeriodo: Number): Observable<Despesa[]> {
+    return of(DESPESAS.filter((despesa) => despesa.periodo === idPeriodo));
+  }
+
+  getDespesa(id: number): Observable<Despesa> {
+    const despesa = DESPESAS.find((despesa) => despesa.id === id);
+    if (despesa) {
+      return of(despesa);
+    } else {
+      throw new Error('not found');
+    }
   }
 }
