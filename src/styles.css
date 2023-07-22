@@ -4,3 +4,12 @@
 .double-info {
   min-width: 100px;
 }
+
+.custom-table-row {
+  padding-top: 2px;
+  min-height: 30px;
+}
+
+.custom-table-row:hover {
+  background-color: lightgray;
+}

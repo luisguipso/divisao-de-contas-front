@@ -1,17 +1,20 @@
-<h1>Periodos</h1>
-<ul>
-  <li *ngFor="let periodo of periodos">
-    <a routerLink="/periodo/{{periodo.id}}">
-      <div class="container-fluid">
-        <div class="row justify-content-between">
-          <div class="col-4">
-            {{periodo.descricao}}
-          </div>
-          <div class="col-4">
-            {{periodo.valor | currency: 'BRL'}}
-          </div>
-        </div>
+<div class="container-fluid">
+  <div class="row justify-content-between">
+    <div class="col-auto">
+      <h1>Periodos</h1>
+    </div>
+    <div class="col-auto">
+      <button type="button" class="btn btn-outline-info" routerLink="/novo-periodo">Novo</button>
+    </div>
+  </div>
+  <div *ngFor="let periodo of periodos">
+    <div class="row justify-content-between custom-table-row border" routerLink="/periodo/{{periodo.id}}">
+      <div class="col-4">
+        {{periodo.descricao}}
       </div>
-    </a>
-  </li>
-</ul>
+      <div class="col-auto">
+        {{periodo.valor | currency: 'BRL'}}
+      </div>
+    </div>
+  </div>
+</div>
