@@ -3,4 +3,5 @@ export interface Despesa {
   descricao: String;
   data: Date;
   valor: number;
+  periodo: number;
 }

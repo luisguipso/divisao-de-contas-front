@@ -10,6 +10,6 @@ export class DespesaService {
   constructor() {}
 
   getDespesas(id: Number): Observable<Despesa[]> {
-    return of(DESPESAS);
+    return of(DESPESAS.filter((despesa) => despesa.periodo === id));
   }
 }
