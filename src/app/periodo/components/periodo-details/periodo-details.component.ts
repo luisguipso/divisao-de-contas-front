@@ -7,10 +7,10 @@ import { Despesa } from 'src/app/despesa/domain/despesa';
 
 @Component({
   selector: 'app-periodo',
-  templateUrl: './periodo.component.html',
-  styleUrls: ['./periodo.component.css'],
+  templateUrl: './periodo-details.component.html',
+  styleUrls: ['./periodo-details.component.css'],
 })
-export class PeriodoComponent implements OnInit {
+export class PeriodoDetailsComponent implements OnInit {
   @Input() periodo?: Periodo;
   despesas: Despesa[] = [];
 

@@ -3,14 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PeriodoComponent } from './periodo/components/periodo/periodo.component';
 import { ListaPeriodosComponent } from './periodo/components/lista-periodos/lista-periodos.component';
 import { DespesaComponent } from './despesa/despesa/despesa.component';
+import { PeriodoDetailsComponent } from './periodo/components/periodo-details/periodo-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PeriodoComponent,
+    PeriodoDetailsComponent,
     ListaPeriodosComponent,
     DespesaComponent,
   ],

@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PeriodoComponent } from './periodo.component';
+import { PeriodoDetailsComponent } from './periodo-details.component';
 
 describe('PeriodoComponent', () => {
-  let component: PeriodoComponent;
-  let fixture: ComponentFixture<PeriodoComponent>;
+  let component: PeriodoDetailsComponent;
+  let fixture: ComponentFixture<PeriodoDetailsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PeriodoComponent ]
-    })
-    .compileComponents();
+      declarations: [PeriodoDetailsComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(PeriodoComponent);
+    fixture = TestBed.createComponent(PeriodoDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
