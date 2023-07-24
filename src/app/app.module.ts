@@ -7,6 +7,7 @@ import { ListaPeriodosComponent } from './periodo/components/lista-periodos/list
 import { DespesaComponent } from './despesa/despesa/despesa.component';
 import { PeriodoDetailsComponent } from './periodo/components/periodo-details/periodo-details.component';
 import { PeriodoComponent } from './periodo/components/periodo/periodo.component';
+import { ExtratoPeriodoComponent } from './periodo/components/extrato-periodo/extrato-periodo.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { PeriodoComponent } from './periodo/components/periodo/periodo.component
     ListaPeriodosComponent,
     DespesaComponent,
     PeriodoComponent,
+    ExtratoPeriodoComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
