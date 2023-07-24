@@ -4,11 +4,12 @@
       <h1>Periodos</h1>
     </div>
     <div class="col-auto">
-      <button type="button" class="btn btn-outline-info" routerLink="/novo-periodo">Novo</button>
+      <button type="button" class="btn btn-outline-info" routerLink="/periodo">Novo</button>
     </div>
   </div>
+  <div class="row">&nbsp;</div>
   <div *ngFor="let periodo of periodos">
-    <div class="row justify-content-between custom-table-row border" routerLink="/periodo/{{periodo.id}}">
+    <div class="row justify-content-between custom-table-row border" routerLink="/periodo-details/{{periodo.id}}">
       <div class="col-4">
         {{periodo.descricao}}
       </div>

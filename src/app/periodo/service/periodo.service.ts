@@ -13,7 +13,7 @@ export class PeriodoService {
     return of(PERIODOS);
   }
 
-  getPeriodo(id: number): Observable<Periodo> {
+  buscarPeriodo(id: number): Observable<Periodo> {
     const periodo = PERIODOS.find((p) => p.id === id);
     if (periodo) {
       return of(periodo);

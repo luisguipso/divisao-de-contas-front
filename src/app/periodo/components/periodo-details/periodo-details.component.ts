@@ -28,7 +28,7 @@ export class PeriodoDetailsComponent implements OnInit {
   getPeriodo() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.periodoService
-      .getPeriodo(id)
+      .buscarPeriodo(id)
       .subscribe((periodo) => (this.periodo = periodo));
   }
 

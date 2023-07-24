@@ -1,25 +1,26 @@
 <div class="container-fluid">
-  <div class="row justify-content-between">
+  <div class="row justify-content-between" routerLink="/periodo/{{periodo?.id}}">
     <div class="col-auto">
-      <h2>{{periodo?.descricao}}</h2>
+      <h3>{{periodo?.descricao}}</h3>
     </div>
     <div class="col-auto">
       <h2>{{periodo?.valor | currency: 'BRL'}}</h2>
     </div>
   </div>
-
+  <div class="row">&nbsp;</div>
   <div class="row justify-content-between">
     <div class="col-auto">
-      <button type="button" class="btn btn-outline-info" routerLink="./lista-periodo">extrato</button>
+      <button type="button" class="btn btn-outline-success" routerLink="./lista-periodo">extrato</button>
     </div>
     <div class="col-auto">
       <button type="button" class="btn btn-outline-info" routerLink="/criar-despesa/{{periodo?.id}}">Nova
         Despesa</button>
     </div>
   </div>
+  <div class="row">&nbsp;</div>
 
   <div *ngFor="let despesa of despesas">
-    <div class="row justify-content-between  custom-table-row border-top" routerLink="/despesa/{{despesa.id}}">
+    <div class="row justify-content-between  custom-table-row border-top" routerLink="/editar-despesa/{{despesa.id}}">
       <div class="col-4">
         {{despesa.descricao}}
       </div>
