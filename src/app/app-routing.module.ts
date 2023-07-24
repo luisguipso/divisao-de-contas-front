@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/lista-periodos', pathMatch: 'full' },
   { path: 'lista-periodos', component: ListaPeriodosComponent },
   { path: 'periodo/:id', component: PeriodoComponent },
+  { path: 'criar-despesa/:periodoId', component: DespesaComponent },
   { path: 'despesa/:id', component: DespesaComponent },
 ];
 

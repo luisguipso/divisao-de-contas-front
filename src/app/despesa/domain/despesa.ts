@@ -1,5 +1,5 @@
 export interface Despesa {
-  id: Number;
+  id?: Number;
   descricao: String;
   data: Date;
   isDivisivel: boolean;
