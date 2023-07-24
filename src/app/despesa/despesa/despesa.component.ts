@@ -11,6 +11,7 @@ import { Location } from '@angular/common';
 })
 export class DespesaComponent {
   @Input() despesa?: Despesa;
+  titulo: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -20,6 +21,12 @@ export class DespesaComponent {
 
   ngOnInit(): void {
     this.getDespesa();
+    this.setTitulo();
+  }
+
+  setTitulo() {
+    if (this.despesa) this.titulo = 'Editar Despesa';
+    else this.titulo = 'Nova Despesa';
   }
 
   private getDespesa() {
