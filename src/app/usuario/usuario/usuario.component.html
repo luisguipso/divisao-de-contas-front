@@ -1,1 +1,33 @@
-<p>usuario works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h3>{{titulo}}</h3>
+    </div>
+  </div>
+  <div class="row">&nbsp;</div>
+
+  <div class="row">
+    <form *ngIf="usuario">
+      <div class="container-fluid">
+        <div class="row mb-3">
+          <label for="nome" class="form-label">Nome</label>
+          <input type="text" class="form-control" id="nome" [(ngModel)]="usuario.nome" name="nome">
+        </div>
+        <div class="row mb-3">
+          <label for="percentual" class="form-label">Percentual</label>
+          <input type="number" class="form-control" id="percentual" [(ngModel)]="usuario.percentual" name="percentual">
+        </div>
+        <div class="row">&nbsp;</div>
+
+        <div class="row justify-content-between">
+          <div class="col-auto">
+            <button type="button" class="btn btn-outline-secondary" (click)="goBack()">Cancelar</button>
+          </div>
+          <div class="col-auto">
+            <button type="button" class="btn btn-primary" (click)="salvar()">Salvar</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

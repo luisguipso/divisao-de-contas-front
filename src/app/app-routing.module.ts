@@ -5,6 +5,7 @@ import { DespesaComponent } from './despesa/despesa/despesa.component';
 import { PeriodoDetailsComponent } from './periodo/components/periodo-details/periodo-details.component';
 import { PeriodoComponent } from './periodo/components/periodo/periodo.component';
 import { ExtratoPeriodoComponent } from './periodo/components/extrato-periodo/extrato-periodo.component';
+import { UsuarioComponent } from './usuario/usuario/usuario.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/lista-periodos', pathMatch: 'full' },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'criar-despesa/:periodoId', component: DespesaComponent },
   { path: 'editar-despesa/:id', component: DespesaComponent },
   { path: 'extrato-periodo/:id', component: ExtratoPeriodoComponent },
+  { path: 'usuario', component: UsuarioComponent },
 ];
 
 @NgModule({
