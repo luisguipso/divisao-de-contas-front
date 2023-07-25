@@ -7,9 +7,7 @@ import { Component } from '@angular/core';
 })
 export class SidenavComponent {
   collapsed = false;
-  navData = [
-    { routeLink: 'dashboard', icon: 'fal fa-home', label: 'Dashboard' },
-  ];
+  navData = [{ routeLink: 'usuario', icon: 'fal fa-user', label: 'Usuario' }];
 
   fechaNavBar() {
     this.collapsed = false;
