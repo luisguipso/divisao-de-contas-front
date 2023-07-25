@@ -1,5 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 @import './styles/bootstrap-5.3.0-dist/css/bootstrap.min.css';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+
+* {
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+}
 
 .double-info {
   min-width: 100px;
