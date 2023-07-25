@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Usuario } from '../domain/usuario';
+import { Usuario } from '../../domain/usuario';
 import { ActivatedRoute } from '@angular/router';
-import { UsuarioService } from '../service/usuario.service';
+import { UsuarioService } from '../../service/usuario.service';
 import { Location } from '@angular/common';
 
 @Component({
