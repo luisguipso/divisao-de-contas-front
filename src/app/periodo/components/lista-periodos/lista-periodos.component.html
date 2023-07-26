@@ -9,13 +9,16 @@
   </div>
   <div class="row">&nbsp;</div>
   <div *ngFor="let periodo of periodos">
-    <div class="row justify-content-between custom-table-row border" routerLink="/periodo-details/{{periodo.id}}">
-      <div class="col-4">
-        {{periodo.descricao}}
-      </div>
-      <div class="col-auto">
-        {{periodo.valor | currency: 'BRL'}}
+    <div class="card border">
+      <div class="card-body text-primary">
+        <div class="row justify-content-between custom-table-row" routerLink="/periodo-details/{{periodo.id}}">
+          <div class="col">
+            {{periodo.descricao}}
+          </div>
+          <div class="col-auto">
+            {{periodo.valor | currency: 'BRL'}}
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
