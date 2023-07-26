@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class SidenavComponent {
   collapsed = false;
   navData = [
-    { routeLink: 'usuario', icon: 'fal fa-user', label: 'Usuário' },
+    { routeLink: 'usuarios', icon: 'fal fa-user', label: 'Usuário' },
     { routeLink: 'lista-periodos', icon: 'fal fa-list', label: 'Periodos' },
   ];
 
