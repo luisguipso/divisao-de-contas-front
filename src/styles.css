@@ -28,3 +28,8 @@ body {
 .custom-table-row:hover {
   background-color: lightgray;
 }
+
+
+.btn {
+  font-size: 22px
+}
