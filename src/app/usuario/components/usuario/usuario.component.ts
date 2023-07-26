@@ -36,19 +36,19 @@ export class UsuarioComponent {
 
   private setUsuario() {
     if (this.idUsuario) {
-      this.buscarPeriodo(this.idUsuario);
+      this.buscarUsuario(this.idUsuario);
     } else {
-      this.criarNovoPeriodo();
+      this.criarNovoUsuario();
     }
   }
 
-  private buscarPeriodo(id: number) {
+  private buscarUsuario(id: number) {
     this.usuarioService
       .buscarUsuario(id)
       .subscribe((usuario) => (this.usuario = usuario));
   }
 
-  private criarNovoPeriodo() {
+  private criarNovoUsuario() {
     this.usuario = {
       nome: '',
       percentual: 0,
