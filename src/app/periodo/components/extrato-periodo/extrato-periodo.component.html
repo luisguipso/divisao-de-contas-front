@@ -1,83 +1,63 @@
 <div class="container-fluid">
   <div class="row justify-content-center">
     <div class="col-auto">
-      <h3>Extrato: {{periodo?.descricao}}</h3>
+      <h3>{{periodo?.descricao}}</h3>
+    </div>
+    <div class="col-auto">
+      <h3>{{periodo?.valor | currency: 'BRL'}}</h3>
     </div>
   </div>
   <div class="row">&nbsp;</div>
 
-  <div class="row justify-content-center">
-    <div class="col-auto">
-      <h3>Valor total: {{periodo?.valor | currency: 'BRL'}}</h3>
-    </div>
-  </div>
-  <div class="row">&nbsp;</div>
-
-  <div class="row justify-content-center">
-    <div class="col-auto">
+  <div class="card">
+    <div class="card-header">
       <h4>Valores Pagos</h4>
     </div>
-  </div>
-  <div> <!-- *ngFor users / total amount of expenses on period for each -->
-    <div class="row justify-content-center">
-      <div class="col-auto">
-        Guilherme: R$800.00
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="col-auto">
-        Cyntia: R$700.00
-      </div>
-    </div>
+    <ul class="list-group list-group-flush"> <!-- *ngFor users / total amount of expenses on period for each -->
+      <li class="list-group-item">Guilherme: R$800.00</li>
+      <li class="list-group-item">Cyntia: R$700.00</li>
+    </ul>
   </div>
   <div class="row">&nbsp;</div>
 
-  <div class="row justify-content-center">
-    <div class="col-auto">
+  <div class="card">
+    <div class="card-header">
       <h4>Valores Esperados</h4>
     </div>
-  </div>
-  <div> <!-- *ngFor users / percentual from config/ calculated value-->
-    <div class="row justify-content-center">
-      <div class="col-auto">
+    <ul class="list-group list-group-flush"> <!-- *ngFor users / percentual from config/ calculated value-->
+      <li class="list-group-item">
         Guilherme: R$900.00 <span class="text-body-secondary">(60%)</span>
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="col-auto">
+      </li>
+      <li class="list-group-item">
         Cyntia: R$600.00 <span class="text-body-secondary">(40%)</span>
-      </div>
-    </div>
+      </li>
+    </ul>
   </div>
   <div class="row">&nbsp;</div>
 
-  <div class="row justify-content-center">
-    <div class="col-auto">
+  <div class="card">
+    <div class="card-header">
       <h4>Resultado</h4>
     </div>
-  </div>
-  <div> <!-- *ngFor users / percentual from config/ calculated value-->
-    <div class="row">
-      <div class="col-12 justify-content-between">
-        <table class="table">
-          <thead>
-            <th>&nbsp;</th>
-            <th>Paga</th>
-            <th>Recebe</th>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Guilherme</td>
-              <td>R$100.00</td>
-              <td>R$0.00</td>
-            </tr>
-            <tr>
-              <td>Cyntia</td>
-              <td>R$0.00</td>
-              <td>R$100.00</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div> <!-- *ngFor users / percentual from config/ calculated value-->
+      <table class="table">
+        <thead>
+          <th>&nbsp;</th>
+          <th>Paga</th>
+          <th>Recebe</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Guilherme</td>
+            <td>R$100.00</td>
+            <td>R$0.00</td>
+          </tr>
+          <tr>
+            <td>Cyntia</td>
+            <td>R$0.00</td>
+            <td>R$100.00</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
