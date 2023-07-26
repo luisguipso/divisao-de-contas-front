@@ -17,4 +17,8 @@ export class UsuarioService {
       throw new Error('not found');
     }
   }
+
+  getUsuarios(): Observable<Usuario[]> {
+    return of(USUARIOS);
+  }
 }
