@@ -21,12 +21,12 @@ export class UsuarioComponent {
   ) {}
 
   ngOnInit() {
-    this.setId();
+    this.getIdFromRouteParam();
     this.setTitulo();
     this.setUsuario();
   }
 
-  setId() {
+  getIdFromRouteParam() {
     this.idUsuario = Number(this.route.snapshot.paramMap.get('id'));
   }
 

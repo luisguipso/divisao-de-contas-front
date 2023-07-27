@@ -10,7 +10,7 @@
   <div class="row">&nbsp;</div>
   <div *ngFor="let periodo of periodos">
     <div class="card border">
-      <div class="card-body text-primary">
+      <div [ngClass]="periodo.isFechado? 'card-body bg-success text-white' : 'card-body bg-primary text-white'">
         <div class="row justify-content-between custom-table-row" routerLink="/periodo-details/{{periodo.id}}">
           <div class="col">
             {{periodo.descricao}}

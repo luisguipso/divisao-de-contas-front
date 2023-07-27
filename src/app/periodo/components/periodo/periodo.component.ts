@@ -21,12 +21,12 @@ export class PeriodoComponent {
   ) {}
 
   ngOnInit(): void {
-    this.setId();
+    this.getIdFromRouteParam();
     this.setTitulo();
     this.setPeriodo();
   }
 
-  setId() {
+  getIdFromRouteParam() {
     this.idPeriodo = Number(this.route.snapshot.paramMap.get('id'));
   }
 
@@ -52,12 +52,14 @@ export class PeriodoComponent {
     this.periodo = {
       id: 0,
       descricao: '',
+      divisores: [],
+      isFechado: false,
       valor: 0,
     };
   }
 
   salvar() {
-    throw new Error('Method not implemented.');
+    console.log(this.periodo);
   }
 
   goBack() {

@@ -9,7 +9,7 @@ import { DESPESAS } from '../despesa-mock';
 export class DespesaService {
   constructor() {}
 
-  getDespesasPorPeriodo(idPeriodo: Number): Observable<Despesa[]> {
+  getDespesasPorPeriodo(idPeriodo?: Number): Observable<Despesa[]> {
     return of(DESPESAS.filter((despesa) => despesa.periodo === idPeriodo));
   }
 

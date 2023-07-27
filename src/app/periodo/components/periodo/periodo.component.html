@@ -14,14 +14,21 @@
               <label for="descricao" class="form-label">Descricao</label>
               <input type="text" class="form-control" id="descricao" [(ngModel)]="periodo.descricao" name="descricao">
             </div>
-            <div class="row">&nbsp;</div>
-            <div class="row justify-content-between">
-              <div class="col-auto">
-                <button type="button" class="btn btn-outline-secondary" (click)="goBack()">Cancelar</button>
+            <div class="row mb-3">
+              <div class="mb-3 form-check">
+                <label class="form-check-label" for="isDividida">Fechado</label>
+                <input type="checkbox" class="form-check-input" id="isDividida" [(ngModel)]="periodo.isFechado"
+                  name="isDividida">
               </div>
-              <div class="col-auto">
-                <button type="button" class="btn btn-primary" (click)="salvar()">Salvar</button>
-              </div>
+            </div>
+          </div>
+          <div class="row">&nbsp;</div>
+          <div class="row justify-content-between">
+            <div class="col-auto">
+              <button type="button" class="btn btn-outline-secondary" (click)="goBack()">Cancelar</button>
+            </div>
+            <div class="col-auto">
+              <button type="button" class="btn btn-primary" (click)="salvar()">Salvar</button>
             </div>
           </div>
         </form>
