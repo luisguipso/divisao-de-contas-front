@@ -11,6 +11,7 @@ import { ExtratoPeriodoComponent } from './periodo/components/extrato-periodo/ex
 import { UsuarioComponent } from './usuario/components/usuario/usuario.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { ListaUsuariosComponent } from './usuario/components/lista-usuarios/lista-usuarios.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,12 @@ import { ListaUsuariosComponent } from './usuario/components/lista-usuarios/list
     SidenavComponent,
     ListaUsuariosComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    NgMultiSelectDropDownModule.forRoot(),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

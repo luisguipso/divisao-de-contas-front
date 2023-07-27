@@ -21,6 +21,12 @@
                   name="isDividida">
               </div>
             </div>
+            <div class="row mb-3">
+              <ng-multiselect-dropdown [placeholder]="'Selecione os Pagadores deste periodo'"
+                [settings]="dropdownSettings" [data]="dropdownList" [(ngModel)]="selectedItems"
+                (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)" name="divisores">
+              </ng-multiselect-dropdown>
+            </div>
           </div>
           <div class="row">&nbsp;</div>
           <div class="row justify-content-between">
