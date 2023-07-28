@@ -1,4 +1,8 @@
+import { Usuario } from '../usuario/domain/usuario';
+import { USUARIOS } from '../usuario/mock-usuario';
 import { Despesa } from './domain/despesa';
+
+const usuario: Usuario = USUARIOS[0];
 
 export const DESPESAS: Despesa[] = [
   {
@@ -8,6 +12,7 @@ export const DESPESAS: Despesa[] = [
     isDivisivel: true,
     valor: 1500.0,
     periodo: 1,
+    dono: usuario,
   },
   {
     id: 2,
@@ -16,6 +21,7 @@ export const DESPESAS: Despesa[] = [
     isDivisivel: true,
     valor: 120.0,
     periodo: 1,
+    dono: usuario,
   },
   {
     id: 3,
@@ -24,6 +30,7 @@ export const DESPESAS: Despesa[] = [
     isDivisivel: true,
     valor: 150.0,
     periodo: 1,
+    dono: usuario,
   },
   {
     id: 4,
@@ -32,6 +39,7 @@ export const DESPESAS: Despesa[] = [
     isDivisivel: true,
     valor: 80.0,
     periodo: 1,
+    dono: usuario,
   },
   {
     id: 5,
@@ -40,6 +48,7 @@ export const DESPESAS: Despesa[] = [
     isDivisivel: true,
     valor: 100.0,
     periodo: 1,
+    dono: usuario,
   },
   {
     id: 6,
@@ -48,6 +57,7 @@ export const DESPESAS: Despesa[] = [
     isDivisivel: true,
     valor: 90.0,
     periodo: 1,
+    dono: usuario,
   },
   {
     id: 7,
@@ -56,6 +66,7 @@ export const DESPESAS: Despesa[] = [
     isDivisivel: true,
     valor: 60.0,
     periodo: 1,
+    dono: usuario,
   },
   {
     id: 11,
@@ -64,6 +75,7 @@ export const DESPESAS: Despesa[] = [
     isDivisivel: true,
     valor: 60.0,
     periodo: 1,
+    dono: usuario,
   },
 
   {
@@ -73,6 +85,7 @@ export const DESPESAS: Despesa[] = [
     isDivisivel: true,
     valor: 100.0,
     periodo: 2,
+    dono: usuario,
   },
 
   {
@@ -82,6 +95,7 @@ export const DESPESAS: Despesa[] = [
     isDivisivel: true,
     valor: 50.0,
     periodo: 3,
+    dono: usuario,
   },
 
   {
@@ -91,6 +105,7 @@ export const DESPESAS: Despesa[] = [
     isDivisivel: true,
     valor: 20.0,
     periodo: 4,
+    dono: usuario,
   },
 
   {
@@ -100,6 +115,7 @@ export const DESPESAS: Despesa[] = [
     isDivisivel: true,
     valor: 60.0,
     periodo: 5,
+    dono: usuario,
   },
 
   {
@@ -109,6 +125,7 @@ export const DESPESAS: Despesa[] = [
     isDivisivel: true,
     valor: 100.0,
     periodo: 6,
+    dono: usuario,
   },
 
   {
@@ -118,6 +135,7 @@ export const DESPESAS: Despesa[] = [
     isDivisivel: true,
     valor: 50.0,
     periodo: 7,
+    dono: usuario,
   },
   {
     id: 18,
@@ -126,6 +144,7 @@ export const DESPESAS: Despesa[] = [
     isDivisivel: true,
     valor: 20.0,
     periodo: 1,
+    dono: usuario,
   },
 
   {
@@ -135,6 +154,7 @@ export const DESPESAS: Despesa[] = [
     isDivisivel: true,
     valor: 60.0,
     periodo: 2,
+    dono: usuario,
   },
 
   {
@@ -144,6 +164,7 @@ export const DESPESAS: Despesa[] = [
     isDivisivel: true,
     valor: 100.0,
     periodo: 3,
+    dono: usuario,
   },
 
   {
@@ -153,6 +174,7 @@ export const DESPESAS: Despesa[] = [
     isDivisivel: true,
     valor: 50.0,
     periodo: 4,
+    dono: usuario,
   },
 
   {
@@ -162,6 +184,7 @@ export const DESPESAS: Despesa[] = [
     isDivisivel: true,
     valor: 20.0,
     periodo: 5,
+    dono: usuario,
   },
 
   {
@@ -171,6 +194,7 @@ export const DESPESAS: Despesa[] = [
     isDivisivel: true,
     valor: 60.0,
     periodo: 6,
+    dono: usuario,
   },
 
   {
@@ -180,5 +204,6 @@ export const DESPESAS: Despesa[] = [
     isDivisivel: true,
     valor: 100.0,
     periodo: 7,
+    dono: usuario,
   },
 ];

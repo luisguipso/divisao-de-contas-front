@@ -3,6 +3,8 @@ import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DespesaService } from '../service/despesa.service';
 import { Location } from '@angular/common';
+import { Usuario } from 'src/app/usuario/domain/usuario';
+import { USUARIOS } from 'src/app/usuario/mock-usuario';
 
 @Component({
   selector: 'app-despesa',
@@ -55,14 +57,19 @@ export class DespesaComponent {
       id: 0,
       descricao: '',
       data: new Date(),
-      isDivisivel: false,
+      isDivisivel: true,
       valor: 0.0,
       periodo: periodoId,
+      dono: this.getUsuarioLogado(),
     };
   }
 
+  getUsuarioLogado(): Usuario {
+    return USUARIOS[1];
+  }
+
   salvar() {
-    throw new Error('Method not implemented.');
+    console.log(this.despesa);
   }
 
   goBack() {

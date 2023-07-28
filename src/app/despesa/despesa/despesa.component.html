@@ -11,7 +11,7 @@
         <form *ngIf="despesa">
           <div class="container-fluid">
             <div class="row mb-3">
-              <label for="descricao" class="form-label">Descricao</label>
+              <label for="descricao" class="form-label">Descrição</label>
               <input type="text" class="form-control" id="descricao" [(ngModel)]="despesa.descricao" name="descricao">
             </div>
             <div class="row mb-3">
@@ -21,14 +21,18 @@
             </div>
             <div class="row mb-3">
               <label for="valor" class="form-label">Valor</label>
-              <input type="number" class="form-control" id="valor" [(ngModel)]="despesa.valor" name="valor">
+              <input type="text" class="form-control" id="valor" [ngModel]="despesa.valor"
+                (ngModelChange)="despesa.valor = $event" name="valor">
             </div>
             <div class="row">
               <div class="mb-3 form-check">
-                <label class="form-check-label" for="isDividida">É dividida</label>
                 <input type="checkbox" class="form-check-input" id="isDividida" [(ngModel)]="despesa.isDivisivel"
                   name="isDividida">
+                <label class="form-check-label" for="isDividida">É dividida</label>
               </div>
+            </div>
+            <div class="row mb-3">
+              <label>Criado por: {{despesa.dono.nome}}</label>
             </div>
             <div class="row">&nbsp;</div>
             <div class="row justify-content-between">
