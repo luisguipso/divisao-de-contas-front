@@ -56,13 +56,31 @@ export class UsuarioComponent {
   }
 
   salvar() {
-    if (this.usuario)
-      this.usuarioService.salvarUsuario(this.usuario).subscribe(
-        (_) => alert(`Pessoa (${this.usuario?.nome}) salva com sucesso!`),
-        (error) => alert(error)
-      );
-    else console.log('empty user');
+    if (!this.usuario) {
+      console.log('empty user');
+      return;
+    }
+    if (this.usuario.id) {
+      this.updateUsuario(this.usuario);
+    } else {
+      this.salvarUsuario(this.usuario);
+    }
   }
+
+  salvarUsuario(usuario: Usuario) {
+    this.usuarioService.salvarUsuario(usuario).subscribe(
+      (_) => alert(`Pessoa (${this.usuario?.nome}) salva com sucesso!`),
+      (error) => alert(error)
+    );
+  }
+
+  updateUsuario(usuario: Usuario) {
+    this.usuarioService.updateUsuario(usuario).subscribe(
+      (_) => alert(`Pessoa (${this.usuario?.nome}) atualizada com sucesso!`),
+      (error) => alert(error)
+    );
+  }
+
   goBack() {
     this.location.back();
   }

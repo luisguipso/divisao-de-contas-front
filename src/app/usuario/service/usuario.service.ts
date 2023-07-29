@@ -42,9 +42,15 @@ export class UsuarioService {
     );
   }
 
-  salvarUsuario(usuario: Usuario) {
+  salvarUsuario(usuario: Usuario): Observable<any> {
     return this.http
       .post(`${this.usuariosApiUrl}`, usuario)
+      .pipe(tap((response) => console.log(response)));
+  }
+
+  updateUsuario(usuario: Usuario): Observable<any> {
+    return this.http
+      .put(`${this.usuariosApiUrl}/${usuario.id}`, usuario)
       .pipe(tap((response) => console.log(response)));
   }
 }
