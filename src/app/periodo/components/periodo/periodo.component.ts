@@ -87,12 +87,9 @@ export class PeriodoComponent {
       { item_id: 4, item_text: 'Navsari' },
     ];*/
 
-    let users: Usuario[] = [];
     this.usuarioService
       .getUsuarios()
-      .subscribe((usuarios) => (users = usuarios));
-
-    this.dropdownList = users;
+      .subscribe((usuarios) => (this.dropdownList = usuarios));
 
     this.dropdownSettings = {
       singleSelection: false,
