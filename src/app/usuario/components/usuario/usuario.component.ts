@@ -56,7 +56,12 @@ export class UsuarioComponent {
   }
 
   salvar() {
-    throw new Error('Method not implemented.');
+    if (this.usuario)
+      this.usuarioService.salvarUsuario(this.usuario).subscribe(
+        (_) => alert(`Pessoa (${this.usuario?.nome}) salva com sucesso!`),
+        (error) => alert(error)
+      );
+    else console.log('empty user');
   }
   goBack() {
     this.location.back();

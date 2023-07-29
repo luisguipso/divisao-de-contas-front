@@ -41,4 +41,10 @@ export class UsuarioService {
       catchError(this.handleError<Usuario[]>('findAllUsers'))
     );
   }
+
+  salvarUsuario(usuario: Usuario) {
+    return this.http
+      .post(`${this.usuariosApiUrl}`, usuario)
+      .pipe(tap((response) => console.log(response)));
+  }
 }
