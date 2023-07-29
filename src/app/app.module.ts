@@ -12,6 +12,7 @@ import { UsuarioComponent } from './usuario/components/usuario/usuario.component
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { ListaUsuariosComponent } from './usuario/components/lista-usuarios/lista-usuarios.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     NgMultiSelectDropDownModule.forRoot(),
   ],
   providers: [],
