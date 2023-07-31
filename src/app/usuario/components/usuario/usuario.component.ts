@@ -69,7 +69,7 @@ export class UsuarioComponent {
 
   salvarUsuario(usuario: Usuario) {
     this.usuarioService.salvarUsuario(usuario).subscribe(
-      (_) => alert(`Pessoa (${this.usuario?.nome}) salva com sucesso!`),
+      (_) => alert(`Pessoa (${usuario.nome}) salva com sucesso!`),
       (error) => alert(error)
     );
   }
