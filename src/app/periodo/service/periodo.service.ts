@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Periodo } from '../domain/periodo';
-import { Observable, catchError, of, tap } from 'rxjs';
-import { PERIODOS } from '../mock-periodos';
+import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { API_URL } from 'src/main';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PeriodoService {
-  SERVER_URL = 'http://localhost:8080';
-  apiUrl = `${this.SERVER_URL}/v1/api/periodos`;
+  apiUrl = `${API_URL}/periodos`;
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   requestOptions: Object = {
     headers: this.headers,
