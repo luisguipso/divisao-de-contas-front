@@ -110,6 +110,9 @@ export class PeriodoComponent {
   salvar() {
     if (this.periodo) {
       this.periodo.divisores = this.selectedItems;
+      this.periodoService
+        .salvar(this.periodo)
+        .subscribe((result) => console.log(result));
     }
     console.log(this.periodo);
   }
