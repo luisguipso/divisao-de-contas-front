@@ -18,16 +18,12 @@ export class PeriodoService {
   constructor(private http: HttpClient) {}
 
   getPeriodos(): Observable<Periodo[]> {
-    return of(PERIODOS);
+    return this.http.get<Periodo[]>(this.apiUrl);
   }
 
   buscarPeriodo(id: number): Observable<Periodo> {
-    const periodo = PERIODOS.find((p) => p.id === id);
-    if (periodo) {
-      return of(periodo);
-    } else {
-      throw new Error('not found');
-    }
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<Periodo>(url);
   }
 
   salvar(periodo: Periodo): Observable<any> {
@@ -35,6 +31,7 @@ export class PeriodoService {
   }
 
   updatePeriodo(periodo: Periodo): Observable<any> {
-    return this.http.put(this.apiUrl, periodo, this.requestOptions);
+    const url = `${this.apiUrl}/${periodo.id}`;
+    return this.http.put(url, periodo, this.requestOptions);
   }
 }

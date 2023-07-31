@@ -20,7 +20,7 @@ export class PeriodoComponent {
   idPeriodo?: number;
 
   dropdownList: Usuario[] = [];
-  selectedItems: Usuario[] = [];
+  pagadoresSelected: Usuario[] = [];
   dropdownSettings: IDropdownSettings = {};
 
   constructor(
@@ -33,7 +33,7 @@ export class PeriodoComponent {
   ngOnInit(): void {
     this.getIdFromRouteParam();
     this.setTitulo();
-    this.setPeriodo();
+    this.getPeriodo();
     this.setUpDropDownDivisores();
   }
 
@@ -45,31 +45,32 @@ export class PeriodoComponent {
     this.titulo = this.idPeriodo ? 'Editar Periodo' : 'Novo Periodo';
   }
 
-  private setPeriodo() {
+  private getPeriodo() {
     if (this.idPeriodo) {
       this.buscarPeriodo(this.idPeriodo);
     } else {
-      this.periodo = this.criarNovoPeriodo();
+      this.setPeriodo(this.criarNovoPeriodo());
     }
+  }
+
+  private setPeriodo(periodo: Periodo) {
+    this.periodo = periodo;
+    this.pagadoresSelected = periodo.pagadores;
   }
 
   private buscarPeriodo(id: number) {
     let periodoEncontrato: Periodo = this.criarNovoPeriodo();
-    this.periodoService
-      .buscarPeriodo(id)
-      .subscribe((periodo) => (periodoEncontrato = periodo));
-
-    if (periodoEncontrato) {
-      this.periodo = periodoEncontrato;
-      this.selectedItems = periodoEncontrato.divisores;
-    }
+    this.periodoService.buscarPeriodo(id).subscribe({
+      next: (periodo) => this.setPeriodo(periodo),
+      error: (error) => alert(error.message),
+    });
   }
 
   private criarNovoPeriodo(): Periodo {
     return {
       id: 0,
       descricao: '',
-      divisores: [],
+      pagadores: [],
       isFechado: false,
       valor: 0,
     };
@@ -92,11 +93,11 @@ export class PeriodoComponent {
   }
 
   onItemSelect(item: any) {
-    if (this.periodo) this.periodo.divisores = this.selectedItems;
+    if (this.periodo) this.periodo.pagadores = this.pagadoresSelected;
   }
   onSelectAll(items: any) {
-    this.selectedItems = items;
-    if (this.periodo) this.periodo.divisores = this.selectedItems;
+    this.pagadoresSelected = items;
+    if (this.periodo) this.periodo.pagadores = this.pagadoresSelected;
   }
 
   salvar() {
