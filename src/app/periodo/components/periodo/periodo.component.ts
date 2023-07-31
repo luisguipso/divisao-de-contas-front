@@ -7,6 +7,7 @@ import { Location } from '@angular/common';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { Usuario } from 'src/app/usuario/domain/usuario';
 import { USUARIOS } from 'src/app/usuario/mock-usuario';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-periodo',
@@ -75,18 +76,6 @@ export class PeriodoComponent {
   }
 
   setUpDropDownDivisores() {
-    /*this.dropdownList = [
-      { item_id: 1, item_text: 'Mumbai' },
-      { item_id: 2, item_text: 'Bangaluru' },
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' },
-      { item_id: 5, item_text: 'New Delhi' },
-    ];
-    this.selectedItems = [
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' },
-    ];*/
-
     this.usuarioService
       .getUsuarios()
       .subscribe((usuarios) => (this.dropdownList = usuarios));
@@ -102,19 +91,50 @@ export class PeriodoComponent {
     };
   }
 
-  onItemSelect(item: any) {}
+  onItemSelect(item: any) {
+    if (this.periodo) this.periodo.divisores = this.selectedItems;
+  }
   onSelectAll(items: any) {
     this.selectedItems = items;
+    if (this.periodo) this.periodo.divisores = this.selectedItems;
   }
 
   salvar() {
-    if (this.periodo) {
-      this.periodo.divisores = this.selectedItems;
-      this.periodoService
-        .salvar(this.periodo)
-        .subscribe((result) => console.log(result));
+    if (!this.periodo) {
+      console.log('empty user');
+      return;
     }
-    console.log(this.periodo);
+    if (this.periodo.id) {
+      this.updatePeriodo(this.periodo);
+    } else {
+      this.salvarPeriodo(this.periodo);
+    }
+  }
+
+  salvarPeriodo(periodo: Periodo) {
+    this.periodoService.salvar(periodo).subscribe({
+      next: () => {
+        alert(`Periodo (${periodo.descricao}) salvo com sucesso!`);
+        this.goBack();
+      },
+      error: (error) => {
+        alert(error.message);
+        console.log(error);
+      },
+    });
+  }
+
+  updatePeriodo(periodo: Periodo) {
+    this.periodoService.updatePeriodo(periodo).subscribe({
+      next: () => {
+        alert(`Periodo (${periodo.descricao}) atualizado com sucesso!`);
+        this.goBack();
+      },
+      error: (error: HttpErrorResponse) => {
+        alert(error.message);
+        console.log(error);
+      },
+    });
   }
 
   goBack() {

@@ -9,11 +9,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class PeriodoService {
   SERVER_URL = 'http://localhost:8080';
-  apiUrl = `${this.SERVER_URL}/api/v1/periodos`;
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  apiUrl = `${this.SERVER_URL}/v1/api/periodos`;
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
+  requestOptions: Object = {
+    headers: this.headers,
+    responseType: 'text',
   };
-
   constructor(private http: HttpClient) {}
 
   getPeriodos(): Observable<Periodo[]> {
@@ -29,22 +30,11 @@ export class PeriodoService {
     }
   }
 
-  salvar(periodo: Periodo): Observable<String> {
-    return this.http.post<Periodo>(this.apiUrl, periodo, this.httpOptions).pipe(
-      tap((s) => this.log(`periodo salvo ${s.id}`)),
-      catchError(this.handleError<any>('salvar periodo'))
-    );
+  salvar(periodo: Periodo): Observable<any> {
+    return this.http.post(this.apiUrl, periodo, this.requestOptions);
   }
 
-  handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      this.log(`${operation} failed: ${error.message}`);
-      return of(result as T);
-    };
-  }
-
-  private log(message: string) {
-    console.log(message);
+  updatePeriodo(periodo: Periodo): Observable<any> {
+    return this.http.put(this.apiUrl, periodo, this.requestOptions);
   }
 }
