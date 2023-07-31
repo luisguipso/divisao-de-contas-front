@@ -113,7 +113,7 @@ export class PeriodoComponent {
   }
 
   salvarPeriodo(periodo: Periodo) {
-    this.periodoService.salvar(periodo).subscribe({
+    this.periodoService.salvarPeriodo(periodo).subscribe({
       next: () => {
         alert(`Periodo (${periodo.descricao}) salvo com sucesso!`);
         this.goBack();

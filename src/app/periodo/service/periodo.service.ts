@@ -26,7 +26,7 @@ export class PeriodoService {
     return this.http.get<Periodo>(url);
   }
 
-  salvar(periodo: Periodo): Observable<any> {
+  salvarPeriodo(periodo: Periodo): Observable<any> {
     return this.http.post(this.apiUrl, periodo, this.requestOptions);
   }
 
