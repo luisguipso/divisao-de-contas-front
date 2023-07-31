@@ -37,7 +37,7 @@ export class UsuarioService {
 
   getUsuarios(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(`${this.usuariosApiUrl}`).pipe(
-      tap((foundedUsers) => console.log(foundedUsers)),
+      tap(() => {}),
       catchError(this.handleError<Usuario[]>('findAllUsers'))
     );
   }
