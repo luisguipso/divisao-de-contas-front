@@ -13,7 +13,14 @@ import { Periodo } from 'src/app/periodo/domain/periodo';
   styleUrls: ['./despesa.component.css'],
 })
 export class DespesaComponent {
-  @Input() despesa?: Despesa;
+  despesa: Despesa = {
+    descricao: '',
+    data: new Date(),
+    isDivisivel: true,
+    valor: 0.0,
+    periodo: this.location.getState() as Periodo,
+    dono: this.getUsuarioLogado(),
+  };
   titulo: string = '';
   idDespesa?: number;
 
@@ -41,8 +48,6 @@ export class DespesaComponent {
   private setDespesa() {
     if (this.idDespesa) {
       this.buscaDespesa(this.idDespesa);
-    } else {
-      this.criaNovaDespesa();
     }
   }
 
@@ -50,17 +55,6 @@ export class DespesaComponent {
     this.despesaService
       .getDespesa(id)
       .subscribe((despesa) => (this.despesa = despesa));
-  }
-
-  private criaNovaDespesa() {
-    this.despesa = {
-      descricao: '',
-      data: new Date(),
-      isDivisivel: true,
-      valor: 0.0,
-      periodo: this.location.getState() as Periodo,
-      dono: this.getUsuarioLogado(),
-    };
   }
 
   getUsuarioLogado(): Usuario {
