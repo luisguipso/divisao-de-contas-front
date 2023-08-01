@@ -5,6 +5,7 @@ import { DespesaService } from '../service/despesa.service';
 import { Location } from '@angular/common';
 import { Usuario } from 'src/app/usuario/domain/usuario';
 import { USUARIOS } from 'src/app/usuario/mock-usuario';
+import { Periodo } from 'src/app/periodo/domain/periodo';
 
 @Component({
   selector: 'app-despesa',
@@ -52,24 +53,48 @@ export class DespesaComponent {
   }
 
   private criaNovaDespesa() {
-    let periodoId = Number(this.route.snapshot.paramMap.get('periodoId'));
     this.despesa = {
-      id: 0,
       descricao: '',
       data: new Date(),
       isDivisivel: true,
       valor: 0.0,
-      periodo: periodoId,
+      periodo: this.location.getState() as Periodo,
       dono: this.getUsuarioLogado(),
     };
   }
 
   getUsuarioLogado(): Usuario {
+    //TODO
     return USUARIOS[1];
   }
 
   salvar() {
-    console.log(this.despesa);
+    if (!this.despesa) {
+      console.log('empty despesa');
+      return;
+    }
+    if (this.despesa.id) {
+      this.updadeDespesa(this.despesa);
+    } else {
+      this.salvarDespesa(this.despesa);
+    }
+  }
+
+  salvarDespesa(despesa: Despesa) {
+    this.despesaService.salvarDespesa(despesa).subscribe({
+      next: () => {
+        alert('Despesa criada com Sucesso');
+        this.goBack();
+      },
+      error: (error) => alert(error.message),
+    });
+  }
+
+  updadeDespesa(despesa: Despesa) {
+    this.despesaService.atualizarDespesa(despesa).subscribe({
+      next: () => alert('Despesa criada com Sucesso'),
+      error: (error) => alert(error.message),
+    });
   }
 
   goBack() {

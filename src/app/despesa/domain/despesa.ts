@@ -1,3 +1,4 @@
+import { Periodo } from 'src/app/periodo/domain/periodo';
 import { Usuario } from 'src/app/usuario/domain/usuario';
 
 export interface Despesa {
@@ -7,5 +8,5 @@ export interface Despesa {
   isDivisivel: boolean;
   valor: number;
   dono: Usuario;
-  periodo: number;
+  periodo: Periodo;
 }

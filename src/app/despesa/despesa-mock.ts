@@ -1,3 +1,4 @@
+import { PERIODOS } from '../periodo/mock-periodos';
 import { Usuario } from '../usuario/domain/usuario';
 import { USUARIOS } from '../usuario/mock-usuario';
 import { Despesa } from './domain/despesa';
@@ -11,7 +12,7 @@ export const DESPESAS: Despesa[] = [
     data: new Date('2023-07-15'),
     isDivisivel: true,
     valor: 1500.0,
-    periodo: 1,
+    periodo: PERIODOS[0],
     dono: usuario,
   },
   {
@@ -20,7 +21,7 @@ export const DESPESAS: Despesa[] = [
     data: new Date('2023-07-12'),
     isDivisivel: true,
     valor: 120.0,
-    periodo: 1,
+    periodo: PERIODOS[0],
     dono: usuario,
   },
   {
@@ -29,7 +30,7 @@ export const DESPESAS: Despesa[] = [
     data: new Date('2023-07-11'),
     isDivisivel: true,
     valor: 150.0,
-    periodo: 1,
+    periodo: PERIODOS[0],
     dono: usuario,
   },
   {
@@ -38,7 +39,7 @@ export const DESPESAS: Despesa[] = [
     data: new Date('2023-07-8'),
     isDivisivel: true,
     valor: 80.0,
-    periodo: 1,
+    periodo: PERIODOS[0],
     dono: usuario,
   },
   {
@@ -47,7 +48,7 @@ export const DESPESAS: Despesa[] = [
     data: new Date('2023-07-5'),
     isDivisivel: true,
     valor: 100.0,
-    periodo: 1,
+    periodo: PERIODOS[0],
     dono: usuario,
   },
   {
@@ -56,7 +57,7 @@ export const DESPESAS: Despesa[] = [
     data: new Date('2023-07-5'),
     isDivisivel: true,
     valor: 90.0,
-    periodo: 1,
+    periodo: PERIODOS[0],
     dono: usuario,
   },
   {
@@ -65,7 +66,7 @@ export const DESPESAS: Despesa[] = [
     data: new Date('2023-07-3'),
     isDivisivel: true,
     valor: 60.0,
-    periodo: 1,
+    periodo: PERIODOS[0],
     dono: usuario,
   },
   {
@@ -74,7 +75,7 @@ export const DESPESAS: Despesa[] = [
     data: new Date('2023-07-7'),
     isDivisivel: true,
     valor: 60.0,
-    periodo: 1,
+    periodo: PERIODOS[0],
     dono: usuario,
   },
 
@@ -84,7 +85,7 @@ export const DESPESAS: Despesa[] = [
     data: new Date('2023-07-8'),
     isDivisivel: true,
     valor: 100.0,
-    periodo: 2,
+    periodo: PERIODOS[1],
     dono: usuario,
   },
 
@@ -94,7 +95,7 @@ export const DESPESAS: Despesa[] = [
     data: new Date('2023-07-9'),
     isDivisivel: true,
     valor: 50.0,
-    periodo: 3,
+    periodo: PERIODOS[2],
     dono: usuario,
   },
 
@@ -104,7 +105,7 @@ export const DESPESAS: Despesa[] = [
     data: new Date('2023-07-10'),
     isDivisivel: true,
     valor: 20.0,
-    periodo: 4,
+    periodo: PERIODOS[3],
     dono: usuario,
   },
 
@@ -114,7 +115,7 @@ export const DESPESAS: Despesa[] = [
     data: new Date('2023-07-11'),
     isDivisivel: true,
     valor: 60.0,
-    periodo: 5,
+    periodo: PERIODOS[4],
     dono: usuario,
   },
 
@@ -124,7 +125,7 @@ export const DESPESAS: Despesa[] = [
     data: new Date('2023-07-12'),
     isDivisivel: true,
     valor: 100.0,
-    periodo: 6,
+    periodo: PERIODOS[5],
     dono: usuario,
   },
 
@@ -134,7 +135,7 @@ export const DESPESAS: Despesa[] = [
     data: new Date('2023-07-13'),
     isDivisivel: true,
     valor: 50.0,
-    periodo: 7,
+    periodo: PERIODOS[6],
     dono: usuario,
   },
   {
@@ -143,7 +144,7 @@ export const DESPESAS: Despesa[] = [
     data: new Date('2023-07-14'),
     isDivisivel: true,
     valor: 20.0,
-    periodo: 1,
+    periodo: PERIODOS[0],
     dono: usuario,
   },
 
@@ -153,7 +154,7 @@ export const DESPESAS: Despesa[] = [
     data: new Date('2023-07-15'),
     isDivisivel: true,
     valor: 60.0,
-    periodo: 2,
+    periodo: PERIODOS[1],
     dono: usuario,
   },
 
@@ -163,7 +164,7 @@ export const DESPESAS: Despesa[] = [
     data: new Date('2023-07-16'),
     isDivisivel: true,
     valor: 100.0,
-    periodo: 3,
+    periodo: PERIODOS[2],
     dono: usuario,
   },
 
@@ -173,7 +174,7 @@ export const DESPESAS: Despesa[] = [
     data: new Date('2023-07-17'),
     isDivisivel: true,
     valor: 50.0,
-    periodo: 4,
+    periodo: PERIODOS[3],
     dono: usuario,
   },
 
@@ -183,7 +184,7 @@ export const DESPESAS: Despesa[] = [
     data: new Date('2023-07-18'),
     isDivisivel: true,
     valor: 20.0,
-    periodo: 5,
+    periodo: PERIODOS[4],
     dono: usuario,
   },
 
@@ -193,7 +194,7 @@ export const DESPESAS: Despesa[] = [
     data: new Date('2023-07-19'),
     isDivisivel: true,
     valor: 60.0,
-    periodo: 6,
+    periodo: PERIODOS[5],
     dono: usuario,
   },
 
@@ -203,7 +204,7 @@ export const DESPESAS: Despesa[] = [
     data: new Date('2023-07-20'),
     isDivisivel: true,
     valor: 100.0,
-    periodo: 7,
+    periodo: PERIODOS[6],
     dono: usuario,
   },
 ];

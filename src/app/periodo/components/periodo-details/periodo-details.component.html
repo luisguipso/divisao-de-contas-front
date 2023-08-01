@@ -14,7 +14,8 @@
         routerLink="/extrato-periodo/{{periodo?.id}}">extrato</button>
     </div>
     <div class="col-auto">
-      <button type="button" class="btn btn-outline-info" routerLink="/criar-despesa/{{periodo?.id}}">Nova
+      <button type="button" class="btn btn-outline-info" routerLink="/criar-despesa/{{periodo?.id}}"
+        [state]="periodo">Nova
         Despesa</button>
     </div>
   </div>
