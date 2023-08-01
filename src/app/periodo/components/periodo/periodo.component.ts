@@ -72,7 +72,7 @@ export class PeriodoComponent {
       descricao: '',
       pagadores: [],
       isFechado: false,
-      valor: 0,
+      valorTotal: 0,
     };
   }
 

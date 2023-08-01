@@ -12,7 +12,12 @@ import { Observable, switchMap } from 'rxjs';
   styleUrls: ['./periodo-details.component.css'],
 })
 export class PeriodoDetailsComponent implements OnInit {
-  @Input() periodo?: Periodo;
+  periodo: Periodo = {
+    descricao: '',
+    pagadores: [],
+    isFechado: false,
+    valorTotal: 0,
+  };
   despesas: Despesa[] = [];
 
   constructor(
@@ -29,7 +34,8 @@ export class PeriodoDetailsComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.getPeriodo().subscribe((periodo) => {
       this.periodo = periodo;
-      this.getDespesas(periodo.id as number);
+      let periodoId = periodo.id as number;
+      this.getDespesas(periodoId);
     });
   }
 

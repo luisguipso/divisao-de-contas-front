@@ -1,20 +1,20 @@
 <div class="container-fluid">
-  <div class="row justify-content-between" routerLink="/periodo/{{periodo?.id}}">
+  <div class="row justify-content-between" routerLink="/periodo/{{periodo.id}}">
     <div class="col-auto">
-      <h3>{{periodo?.descricao}}</h3>
+      <h3>{{periodo.descricao}}</h3>
     </div>
     <div class="col-auto">
-      <h3>{{periodo?.valor | currency: 'BRL'}}</h3>
+      <h3>{{periodo.valorTotal | currency: 'BRL'}}</h3>
     </div>
   </div>
   <div class="row">&nbsp;</div>
   <div class="row justify-content-between">
     <div class="col-auto">
       <button type="button" class="btn btn-outline-success"
-        routerLink="/extrato-periodo/{{periodo?.id}}">extrato</button>
+        routerLink="/extrato-periodo/{{periodo.id}}">extrato</button>
     </div>
     <div class="col-auto">
-      <button type="button" class="btn btn-outline-info" routerLink="/criar-despesa/{{periodo?.id}}"
+      <button type="button" class="btn btn-outline-info" routerLink="/criar-despesa/{{periodo.id}}"
         [state]="periodo">Nova
         Despesa</button>
     </div>

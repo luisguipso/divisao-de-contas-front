@@ -5,5 +5,5 @@ export interface Periodo {
   descricao: String;
   pagadores: Usuario[];
   isFechado: boolean;
-  valor: number;
+  valorTotal: number;
 }
