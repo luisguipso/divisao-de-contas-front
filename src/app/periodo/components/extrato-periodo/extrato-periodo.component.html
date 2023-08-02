@@ -13,9 +13,14 @@
     <div class="card-header">
       <h4>Valores Pagos</h4>
     </div>
-    <ul class="list-group list-group-flush" *ngFor="let valorUsuario of valoresPorUsuarioNoPeriodo">
-      <li class="list-group-item">{{valorUsuario.nomeUsuario}}: {{valorUsuario.valorTotal | currency: 'BRL'}}</li>
-    </ul>
+    <div class="list-group list-group-flush" *ngFor="let valorUsuario of valoresPorUsuarioNoPeriodo">
+      <div class="list-group-item">
+        <div class="row">
+          <div class="col">{{valorUsuario.nomeUsuario}}</div>
+          <div class="col-auto">{{valorUsuario.valorTotal | currency: 'BRL'}}</div>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="row">&nbsp;</div>
 
