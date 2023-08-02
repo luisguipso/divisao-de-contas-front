@@ -13,9 +13,8 @@
     <div class="card-header">
       <h4>Valores Pagos</h4>
     </div>
-    <ul class="list-group list-group-flush"> <!-- *ngFor users / total amount of expenses on period for each -->
-      <li class="list-group-item">Guilherme: R$800.00</li>
-      <li class="list-group-item">Cyntia: R$700.00</li>
+    <ul class="list-group list-group-flush" *ngFor="let valorUsuario of valoresPorUsuarioNoPeriodo">
+      <li class="list-group-item">{{valorUsuario.nomeUsuario}}: {{valorUsuario.valorTotal | currency: 'BRL'}}</li>
     </ul>
   </div>
   <div class="row">&nbsp;</div>

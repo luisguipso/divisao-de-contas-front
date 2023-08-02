@@ -4,6 +4,7 @@ import { Despesa } from '../domain/despesa';
 import { DESPESAS } from '../despesa-mock';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { API_URL } from 'src/main';
+import { ValorPorUsuario } from 'src/app/periodo/domain/valor-por-usuario-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -21,24 +22,40 @@ export class DespesaService {
 
   constructor(private http: HttpClient) {}
 
-  getDespesasPorPeriodo(idPeriodo?: Number): Observable<Despesa[]> {
-    const params = new HttpParams().set(
+  getDespesasPorPeriodo(idPeriodo: Number): Observable<Despesa[]> {
+    const requestOptionsWithParams = this.getRequestOptionsWithParam(
       'periodoId',
-      idPeriodo ? idPeriodo.toString() : ''
+      idPeriodo.toString()
     );
-
-    const requestOptionsWithParams = {
-      ...this.requestOptions,
-      params,
-    };
     return this.http.get<Despesa[]>(
       `${this.apiUrl}/buscarPorPeriodo`,
       requestOptionsWithParams
     );
   }
 
+  private getRequestOptionsWithParam(paramName: string, param: string) {
+    const params = new HttpParams().set(paramName, param ? param : '');
+
+    const requestOptionsWithParams = {
+      ...this.requestOptions,
+      params,
+    };
+    return requestOptionsWithParams;
+  }
+
   getDespesa(id: number): Observable<Despesa> {
     return this.http.get<Despesa>(`${this.apiUrl}/${id}`);
+  }
+
+  buscarValorPagoPorUsuarioNoPeriodo(
+    idPeriodo: number
+  ): Observable<ValorPorUsuario[]> {
+    let url: string = `${this.apiUrl}/buscarValorPagoPorUsuarioNoPeriodo`;
+    const requestOptionsWithParams = this.getRequestOptionsWithParam(
+      'periodoId',
+      idPeriodo.toString()
+    );
+    return this.http.get<ValorPorUsuario[]>(url, requestOptionsWithParams);
   }
 
   salvarDespesa(despesa: Despesa): Observable<any> {
