@@ -23,7 +23,7 @@ export class DespesaService {
   constructor(private http: HttpClient) {}
 
   getDespesasPorPeriodo(idPeriodo: Number): Observable<Despesa[]> {
-    const requestOptionsWithParams = this.getRequestOptionsWithParam(
+    let requestOptionsWithParams = this.getRequestOptionsWithParam(
       'periodoId',
       idPeriodo.toString()
     );
@@ -34,9 +34,9 @@ export class DespesaService {
   }
 
   private getRequestOptionsWithParam(paramName: string, param: string) {
-    const params = new HttpParams().set(paramName, param ? param : '');
+    let params = new HttpParams().set(paramName, param ? param : '');
 
-    const requestOptionsWithParams = {
+    let requestOptionsWithParams = {
       ...this.requestOptions,
       params,
     };
@@ -48,12 +48,23 @@ export class DespesaService {
   }
 
   buscarValorPagoPorUsuarioNoPeriodo(
-    idPeriodo: number
+    periodoId: number
   ): Observable<ValorPorUsuario[]> {
     let url: string = `${this.apiUrl}/buscarValorPagoPorUsuarioNoPeriodo`;
-    const requestOptionsWithParams = this.getRequestOptionsWithParam(
+    let requestOptionsWithParams = this.getRequestOptionsWithParam(
       'periodoId',
-      idPeriodo.toString()
+      periodoId.toString()
+    );
+    return this.http.get<ValorPorUsuario[]>(url, requestOptionsWithParams);
+  }
+
+  buscarValorDevidoPorUsuarioNoPeriodo(
+    periodoId: number
+  ): Observable<ValorPorUsuario[]> {
+    let url: string = `${this.apiUrl}/buscarValorDevidoPorUsuarioNoPeriodo`;
+    let requestOptionsWithParams = this.getRequestOptionsWithParam(
+      'periodoId',
+      periodoId.toString()
     );
     return this.http.get<ValorPorUsuario[]>(url, requestOptionsWithParams);
   }

@@ -1,3 +1,4 @@
+import { UsuarioService } from './../../../usuario/service/usuario.service';
 import { ValorPorUsuario } from './../../domain/valor-por-usuario-dto';
 import { DespesaService } from 'src/app/despesa/service/despesa.service';
 import { ActivatedRoute } from '@angular/router';
@@ -13,7 +14,8 @@ import { Observable } from 'rxjs';
 })
 export class ExtratoPeriodoComponent {
   periodo?: Periodo;
-  valoresPorUsuarioNoPeriodo: ValorPorUsuario[] = [];
+  valoresPagosPorUsuarioNoPeriodo: ValorPorUsuario[] = [];
+  valoresDevidosPorUsuarioNoPeriodo: any = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -25,7 +27,8 @@ export class ExtratoPeriodoComponent {
     this.buscarPeriodo().subscribe((periodo) => {
       this.periodo = periodo as Periodo;
       let periodoId = this.periodo.id as number;
-      return this.buscarValorPagoPorUsuarioNoPeriodo(periodoId);
+      this.buscarValorPagoPorUsuarioNoPeriodo(periodoId);
+      this.buscarValorDevidoPorUsuarioNoPeriodo(periodoId);
     });
   }
 
@@ -37,6 +40,14 @@ export class ExtratoPeriodoComponent {
   buscarValorPagoPorUsuarioNoPeriodo(periodoId: number) {
     this.despesaService
       .buscarValorPagoPorUsuarioNoPeriodo(periodoId)
-      .subscribe((valores) => (this.valoresPorUsuarioNoPeriodo = valores));
+      .subscribe((valores) => (this.valoresPagosPorUsuarioNoPeriodo = valores));
+  }
+
+  buscarValorDevidoPorUsuarioNoPeriodo(periodoId: number) {
+    this.despesaService
+      .buscarValorDevidoPorUsuarioNoPeriodo(periodoId)
+      .subscribe((valores) => {
+        this.valoresDevidosPorUsuarioNoPeriodo = valores;
+      });
   }
 }
