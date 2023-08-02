@@ -1,5 +1,5 @@
 export interface Usuario {
   id?: number;
-  nome: String;
+  nome: string;
   percentual: number;
 }

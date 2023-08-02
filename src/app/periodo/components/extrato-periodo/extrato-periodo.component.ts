@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Periodo } from '../../domain/periodo';
 import { PeriodoService } from './../../service/periodo.service';
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin, of, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-extrato-periodo',
@@ -15,7 +15,7 @@ import { Observable } from 'rxjs';
 export class ExtratoPeriodoComponent {
   periodo?: Periodo;
   valoresPagosPorUsuarioNoPeriodo: ValorPorUsuario[] = [];
-  valoresDevidosPorUsuarioNoPeriodo: any = [];
+  valoresDevidosPorUsuarioNoPeriodo: ValorPorUsuario[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -46,8 +46,8 @@ export class ExtratoPeriodoComponent {
   buscarValorDevidoPorUsuarioNoPeriodo(periodoId: number) {
     this.despesaService
       .buscarValorDevidoPorUsuarioNoPeriodo(periodoId)
-      .subscribe((valores) => {
-        this.valoresDevidosPorUsuarioNoPeriodo = valores;
+      .subscribe((valoresComPercentual) => {
+        this.valoresDevidosPorUsuarioNoPeriodo = valoresComPercentual;
       });
   }
 }

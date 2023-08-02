@@ -16,7 +16,7 @@
     <div class="list-group list-group-flush" *ngFor="let valorUsuario of valoresPagosPorUsuarioNoPeriodo">
       <div class="list-group-item">
         <div class="row">
-          <div class="col">{{valorUsuario.nomeUsuario}}</div>
+          <div class="col">{{valorUsuario.usuario.nome}}</div>
           <div class="col-auto">{{valorUsuario.valorTotal | currency: 'BRL'}}</div>
         </div>
       </div>
@@ -31,7 +31,8 @@
     <div class="list-group list-group-flush" *ngFor="let valorUsuario of valoresDevidosPorUsuarioNoPeriodo">
       <div class="list-group-item">
         <div class="row">
-          <div class="col">{{valorUsuario.nomeUsuario}}</div>
+          <div class="col">{{valorUsuario.usuario.nome}} <span
+              class="text-secondary">({{valorUsuario.usuario.percentual}}%)</span></div>
           <div class="col-auto">{{valorUsuario.valorTotal | currency: 'BRL'}}</div>
         </div>
       </div>

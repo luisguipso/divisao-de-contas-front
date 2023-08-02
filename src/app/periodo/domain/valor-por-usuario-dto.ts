@@ -1,4 +1,6 @@
+import { Usuario } from 'src/app/usuario/domain/usuario';
+
 export interface ValorPorUsuario {
-  nomeUsuario: string;
+  usuario: Usuario;
   valorTotal: number;
 }
