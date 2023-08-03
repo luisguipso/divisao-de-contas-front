@@ -37,7 +37,6 @@
         </div>
       </div>
     </div>
-
   </div>
   <div class="row">&nbsp;</div>
 
@@ -48,8 +47,10 @@
     <div class="list-group list-group-flush" *ngFor="let valorUsuario of valoresCalculados">
       <div class="list-group-item">
         <div class="row">
-          <div class="col">{{valorUsuario.usuario.nome}} <span
-              class="text-secondary">({{valorUsuario.usuario.percentual}}%)</span></div>
+          <div class="col">{{valorUsuario.usuario.nome}}
+            <span class="text-secondary" *ngIf="isNegativo(valorUsuario.valorTotal); else paga">(recebe)</span>
+            <ng-template #paga><span class="text-secondary">(paga)</span></ng-template>
+          </div>
           <div class="col-auto">{{valorUsuario.valorTotal | currency: 'BRL'}}</div>
         </div>
       </div>

@@ -1,11 +1,11 @@
-import { UsuarioService } from './../../../usuario/service/usuario.service';
 import { ValorPorUsuario } from './../../domain/valor-por-usuario-dto';
 import { DespesaService } from 'src/app/despesa/service/despesa.service';
 import { ActivatedRoute } from '@angular/router';
 import { Periodo } from '../../domain/periodo';
 import { PeriodoService } from './../../service/periodo.service';
 import { Component } from '@angular/core';
-import { Observable, forkJoin, of, switchMap } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
+import { switchMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-extrato-periodo',
@@ -25,13 +25,26 @@ export class ExtratoPeriodoComponent {
   ) {}
 
   ngOnInit(): void {
-    this.buscarPeriodo().subscribe((periodo) => {
-      this.periodo = periodo as Periodo;
-      let periodoId = this.periodo.id as number;
-      this.buscarValorPagoPorUsuarioNoPeriodo(periodoId);
-      this.buscarValorDevidoPorUsuarioNoPeriodo(periodoId);
-      this.calcularValorDevido();
-    });
+    this.buscarPeriodo()
+      .pipe(
+        switchMap((periodo) => {
+          this.periodo = periodo as Periodo;
+          let periodoId = this.periodo.id as number;
+          let valoresPagos$ =
+            this.buscarValorPagoPorUsuarioNoPeriodo(periodoId);
+          let valoresDevidos$ =
+            this.buscarValorDevidoPorUsuarioNoPeriodo(periodoId);
+          return combineLatest([valoresDevidos$, valoresPagos$]);
+        }),
+        tap(([valoresDevidos, valoresPagos]) => {
+          this.valoresDevidos = valoresDevidos;
+          this.valoresPagos = valoresPagos;
+          this.valoresCalculados = valoresDevidos.map((valoresDevidos) =>
+            this.getValorCalculado(valoresDevidos, valoresPagos)
+          );
+        })
+      )
+      .subscribe();
   }
 
   buscarPeriodo(): Observable<Periodo> {
@@ -39,34 +52,36 @@ export class ExtratoPeriodoComponent {
     return this.periodoService.buscarPeriodo(id);
   }
 
-  buscarValorPagoPorUsuarioNoPeriodo(periodoId: number) {
-    this.despesaService
-      .buscarValorPagoPorUsuarioNoPeriodo(periodoId)
-      .subscribe((valores) => (this.valoresPagos = valores));
+  buscarValorPagoPorUsuarioNoPeriodo(
+    periodoId: number
+  ): Observable<ValorPorUsuario[]> {
+    return this.despesaService.buscarValorPagoPorUsuarioNoPeriodo(periodoId);
   }
 
-  buscarValorDevidoPorUsuarioNoPeriodo(periodoId: number) {
-    this.despesaService
-      .buscarValorDevidoPorUsuarioNoPeriodo(periodoId)
-      .subscribe((valoresComPercentual) => {
-        this.valoresDevidos = valoresComPercentual;
-      });
+  buscarValorDevidoPorUsuarioNoPeriodo(
+    periodoId: number
+  ): Observable<ValorPorUsuario[]> {
+    return this.despesaService.buscarValorDevidoPorUsuarioNoPeriodo(periodoId);
   }
 
-  calcularValorDevido(): void {
-    this.valoresDevidos.forEach((valorDevidoPeloUsuario) => {
-      let pagoPeloUsuario = this.valoresPagos.find(
-        (valorPagoPorUsuario) =>
-          valorPagoPorUsuario.usuario.id === valorDevidoPeloUsuario.usuario.id
-      );
-      if (pagoPeloUsuario) {
-        let valorCalculado: number =
-          valorDevidoPeloUsuario.valorTotal - pagoPeloUsuario.valorTotal;
-        this.valoresCalculados.push({
-          usuario: valorDevidoPeloUsuario.usuario,
-          valorTotal: valorCalculado,
-        });
-      }
-    });
+  getValorCalculado(
+    valorDevidoPeloUsuario: ValorPorUsuario,
+    valoresPagos: ValorPorUsuario[]
+  ): ValorPorUsuario {
+    const pagoPeloUsuario = valoresPagos.find(
+      (valorPagoPorUsuario: ValorPorUsuario) =>
+        valorPagoPorUsuario.usuario.id === valorDevidoPeloUsuario.usuario.id
+    );
+    const valorCalculado: number = pagoPeloUsuario
+      ? valorDevidoPeloUsuario.valorTotal - pagoPeloUsuario.valorTotal
+      : valorDevidoPeloUsuario.valorTotal;
+    return {
+      usuario: valorDevidoPeloUsuario.usuario,
+      valorTotal: valorCalculado,
+    };
+  }
+
+  isNegativo(valor: number): boolean {
+    return valor <= 0;
   }
 }
