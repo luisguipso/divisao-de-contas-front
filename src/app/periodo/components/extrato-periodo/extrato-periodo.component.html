@@ -13,7 +13,7 @@
     <div class="card-header">
       <h4>Valores Pagos</h4>
     </div>
-    <div class="list-group list-group-flush" *ngFor="let valorUsuario of valoresPagosPorUsuarioNoPeriodo">
+    <div class="list-group list-group-flush" *ngFor="let valorUsuario of valoresPagos">
       <div class="list-group-item">
         <div class="row">
           <div class="col">{{valorUsuario.usuario.nome}}</div>
@@ -28,7 +28,7 @@
     <div class="card-header">
       <h4>Valores Devidos</h4>
     </div>
-    <div class="list-group list-group-flush" *ngFor="let valorUsuario of valoresDevidosPorUsuarioNoPeriodo">
+    <div class="list-group list-group-flush" *ngFor="let valorUsuario of valoresDevidos">
       <div class="list-group-item">
         <div class="row">
           <div class="col">{{valorUsuario.usuario.nome}} <span
@@ -45,25 +45,13 @@
     <div class="card-header">
       <h4>Resultado</h4>
     </div>
-    <div> <!-- *ngFor users / percentual from config/ calculated value-->
-      <table class="table">
-        <thead>
-          <th>&nbsp;</th>
-          <th>Paga</th>
-          <th>Recebe</th>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Guilherme</td>
-            <td>R$100.00</td>
-            <td>R$0.00</td>
-          </tr>
-          <tr>
-            <td>Cyntia</td>
-            <td>R$0.00</td>
-            <td>R$100.00</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="list-group list-group-flush" *ngFor="let valorUsuario of valoresCalculados">
+      <div class="list-group-item">
+        <div class="row">
+          <div class="col">{{valorUsuario.usuario.nome}} <span
+              class="text-secondary">({{valorUsuario.usuario.percentual}}%)</span></div>
+          <div class="col-auto">{{valorUsuario.valorTotal | currency: 'BRL'}}</div>
+        </div>
+      </div>
     </div>
   </div>

@@ -14,8 +14,9 @@ import { Observable, forkJoin, of, switchMap } from 'rxjs';
 })
 export class ExtratoPeriodoComponent {
   periodo?: Periodo;
-  valoresPagosPorUsuarioNoPeriodo: ValorPorUsuario[] = [];
-  valoresDevidosPorUsuarioNoPeriodo: ValorPorUsuario[] = [];
+  valoresPagos: ValorPorUsuario[] = [];
+  valoresDevidos: ValorPorUsuario[] = [];
+  valoresCalculados: ValorPorUsuario[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -29,6 +30,7 @@ export class ExtratoPeriodoComponent {
       let periodoId = this.periodo.id as number;
       this.buscarValorPagoPorUsuarioNoPeriodo(periodoId);
       this.buscarValorDevidoPorUsuarioNoPeriodo(periodoId);
+      this.calcularValorDevido();
     });
   }
 
@@ -40,14 +42,31 @@ export class ExtratoPeriodoComponent {
   buscarValorPagoPorUsuarioNoPeriodo(periodoId: number) {
     this.despesaService
       .buscarValorPagoPorUsuarioNoPeriodo(periodoId)
-      .subscribe((valores) => (this.valoresPagosPorUsuarioNoPeriodo = valores));
+      .subscribe((valores) => (this.valoresPagos = valores));
   }
 
   buscarValorDevidoPorUsuarioNoPeriodo(periodoId: number) {
     this.despesaService
       .buscarValorDevidoPorUsuarioNoPeriodo(periodoId)
       .subscribe((valoresComPercentual) => {
-        this.valoresDevidosPorUsuarioNoPeriodo = valoresComPercentual;
+        this.valoresDevidos = valoresComPercentual;
       });
+  }
+
+  calcularValorDevido(): void {
+    this.valoresDevidos.forEach((valorDevidoPeloUsuario) => {
+      let pagoPeloUsuario = this.valoresPagos.find(
+        (valorPagoPorUsuario) =>
+          valorPagoPorUsuario.usuario.id === valorDevidoPeloUsuario.usuario.id
+      );
+      if (pagoPeloUsuario) {
+        let valorCalculado: number =
+          valorDevidoPeloUsuario.valorTotal - pagoPeloUsuario.valorTotal;
+        this.valoresCalculados.push({
+          usuario: valorDevidoPeloUsuario.usuario,
+          valorTotal: valorCalculado,
+        });
+      }
+    });
   }
 }
