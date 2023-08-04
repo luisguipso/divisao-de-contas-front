@@ -17,11 +17,9 @@ export class ExtratoComponent {
   ) {}
 
   ngOnInit() {
-    this.buscarPeriodo().subscribe((periodo) => (this.periodo = periodo));
-  }
-
-  buscarPeriodo(): Observable<Periodo> {
     let id = Number(this.route.snapshot.paramMap.get('id'));
-    return this.periodoService.buscarPeriodo(id);
+    return this.periodoService
+      .buscarPeriodo(id)
+      .subscribe((periodo) => (this.periodo = periodo));
   }
 }

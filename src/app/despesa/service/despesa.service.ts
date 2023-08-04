@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Despesa } from '../domain/despesa';
-import { DESPESAS } from '../despesa-mock';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { API_URL } from 'src/main';
-import { ValorPorUsuario } from 'src/app/periodo/domain/valor-por-usuario-dto';
+import { ValorPorUsuario } from 'src/app/extrato/domain/valor-por-usuario-dto';
 
 @Injectable({
   providedIn: 'root',

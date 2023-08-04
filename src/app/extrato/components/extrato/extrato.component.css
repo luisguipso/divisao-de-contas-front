@@ -1,0 +1,6 @@
+.row {
+  .p-tabview .p-tabview-panels{
+    padding: 0;
+    margin-top: 20px;
+  }
+}
