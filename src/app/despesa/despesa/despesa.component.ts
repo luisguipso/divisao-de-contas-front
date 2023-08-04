@@ -93,4 +93,13 @@ export class DespesaComponent {
   goBack() {
     this.location.back();
   }
+
+  onInputValor(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    const inputValue = inputElement.value;
+
+    // Replace commas with periods
+    this.despesa.valor = Number(inputValue.replace(/,/g, '.'));
+    console.log(inputValue);
+  }
 }
