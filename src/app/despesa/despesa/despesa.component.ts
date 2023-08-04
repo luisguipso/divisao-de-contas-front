@@ -34,7 +34,6 @@ export class DespesaComponent {
     this.setId();
     this.setTitulo();
     this.setDespesa();
-    console.log(this.despesa?.periodo);
   }
 
   setId() {
