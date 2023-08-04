@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Periodo } from '../domain/periodo';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { API_URL } from 'src/main';
 
 @Injectable({
@@ -12,12 +12,23 @@ export class PeriodoService {
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   requestOptions: Object = {
     headers: this.headers,
+  };
+  requestOptionsReturnTypeText: Object = {
+    ...this.requestOptions,
     responseType: 'text',
   };
   constructor(private http: HttpClient) {}
 
-  getPeriodos(): Observable<Periodo[]> {
-    return this.http.get<Periodo[]>(this.apiUrl);
+  getPeriodos(pagina: number, tamanho: number): Observable<Periodo[]> {
+    let params = new HttpParams()
+      .set('pagina', pagina ? pagina : '0')
+      .set('tamanho', tamanho ? tamanho : '0');
+
+    let requestWithPagableParams = {
+      ...this.requestOptions,
+      params,
+    };
+    return this.http.get<Periodo[]>(this.apiUrl, requestWithPagableParams);
   }
 
   buscarPeriodo(id: number): Observable<Periodo> {
@@ -26,11 +37,15 @@ export class PeriodoService {
   }
 
   salvarPeriodo(periodo: Periodo): Observable<any> {
-    return this.http.post(this.apiUrl, periodo, this.requestOptions);
+    return this.http.post(
+      this.apiUrl,
+      periodo,
+      this.requestOptionsReturnTypeText
+    );
   }
 
   updatePeriodo(periodo: Periodo): Observable<any> {
     const url = `${this.apiUrl}/${periodo.id}`;
-    return this.http.put(url, periodo, this.requestOptions);
+    return this.http.put(url, periodo, this.requestOptionsReturnTypeText);
   }
 }

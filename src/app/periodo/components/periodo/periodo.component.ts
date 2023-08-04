@@ -120,7 +120,6 @@ export class PeriodoComponent {
       },
       error: (error) => {
         alert(error.message);
-        console.log(error);
       },
     });
   }
@@ -133,7 +132,6 @@ export class PeriodoComponent {
       },
       error: (error: HttpErrorResponse) => {
         alert(error.message);
-        console.log(error);
       },
     });
   }
