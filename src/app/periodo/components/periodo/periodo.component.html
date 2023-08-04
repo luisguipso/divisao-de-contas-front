@@ -15,18 +15,18 @@
               <input type="text" class="form-control" id="descricao" [(ngModel)]="periodo.descricao" name="descricao">
             </div>
             <div class="row mb-3">
-              <div class="mb-3 form-check">
+              <div class=" form-check">
                 <label class="form-check-label" for="isDividida">Fechado</label>
                 <input type="checkbox" class="form-check-input" id="isDividida" [(ngModel)]="periodo.isFechado"
                   name="isDividida">
               </div>
             </div>
-            <div class="row mb-3">
+            <div class="row mb-3 no-margin">
               <!-- <ng-multiselect-dropdown [placeholder]="'Selecione quem vai dividir'" [settings]="dropdownSettings"
                 [data]="dropdownList" [(ngModel)]="pagadoresSelected" (onSelect)="onItemSelect($event)"
                 (onSelectAll)="onSelectAll($event)" name="divisores">
               </ng-multiselect-dropdown> -->
-              <p-multiSelect class="no-margin" [options]="usuarios" [(ngModel)]="periodo.pagadores" optionLabel="nome"
+              <p-multiSelect [options]="usuarios" [(ngModel)]="periodo.pagadores" optionLabel="nome"
                 name="pagadores"></p-multiSelect>
             </div>
           </div>

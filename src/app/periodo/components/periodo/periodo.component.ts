@@ -6,7 +6,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Usuario } from 'src/app/usuario/domain/usuario';
 import { HttpErrorResponse } from '@angular/common/http';
-import { MultiSelectModule } from 'primeng/multiselect';
 
 @Component({
   selector: 'app-periodo',
