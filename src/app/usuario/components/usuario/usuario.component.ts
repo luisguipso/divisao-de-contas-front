@@ -3,6 +3,7 @@ import { Usuario } from '../../domain/usuario';
 import { ActivatedRoute } from '@angular/router';
 import { UsuarioService } from '../../service/usuario.service';
 import { Location } from '@angular/common';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-usuario',
@@ -12,7 +13,12 @@ import { Location } from '@angular/common';
 export class UsuarioComponent {
   titulo: string = '';
   idUsuario?: number;
-  usuario?: Usuario;
+  usuario: Usuario = {
+    nome: '',
+    percentual: 0,
+  };
+  save$?: Subscription;
+  fetch$?: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,25 +40,14 @@ export class UsuarioComponent {
     this.titulo = this.idUsuario ? 'Editar Usuario' : 'Novo Usuario';
   }
 
-  private setUsuario() {
-    if (this.idUsuario) {
-      this.buscarUsuario(this.idUsuario);
-    } else {
-      this.criarNovoUsuario();
-    }
+  setUsuario() {
+    if (this.idUsuario) this.fetch$ = this.buscarUsuario(this.idUsuario);
   }
 
-  private buscarUsuario(id: number) {
-    this.usuarioService
+  buscarUsuario(id: number): Subscription {
+    return this.usuarioService
       .buscarUsuario(id)
       .subscribe((usuario) => (this.usuario = usuario));
-  }
-
-  private criarNovoUsuario() {
-    this.usuario = {
-      nome: '',
-      percentual: 0,
-    };
   }
 
   salvar() {
@@ -61,27 +56,32 @@ export class UsuarioComponent {
       return;
     }
     if (this.usuario.id) {
-      this.updateUsuario(this.usuario);
+      this.save$ = this.updateUsuario(this.usuario);
     } else {
-      this.salvarUsuario(this.usuario);
+      this.save$ = this.salvarUsuario(this.usuario);
     }
   }
 
-  salvarUsuario(usuario: Usuario) {
-    this.usuarioService.salvarUsuario(usuario).subscribe(
-      (_) => alert(`Pessoa (${usuario.nome}) salva com sucesso!`),
-      (error) => alert(error)
-    );
+  salvarUsuario(usuario: Usuario): Subscription {
+    return this.usuarioService
+      .salvarUsuario(usuario)
+      .subscribe(() => alert(`Pessoa (${usuario.nome}) salva com sucesso!`));
   }
 
-  updateUsuario(usuario: Usuario) {
-    this.usuarioService.updateUsuario(usuario).subscribe(
-      (_) => alert(`Pessoa (${this.usuario?.nome}) atualizada com sucesso!`),
-      (error) => alert(error)
-    );
+  updateUsuario(usuario: Usuario): Subscription {
+    return this.usuarioService
+      .updateUsuario(usuario)
+      .subscribe(() =>
+        alert(`Pessoa (${usuario.nome}) atualizada com sucesso!`)
+      );
   }
 
   goBack() {
     this.location.back();
+  }
+
+  ngOnDestroy() {
+    this.save$?.unsubscribe();
+    this.fetch$?.unsubscribe();
   }
 }

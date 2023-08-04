@@ -9,12 +9,20 @@ import { API_URL } from 'src/main';
 })
 export class UsuarioService {
   private usuariosApiUrl = `${API_URL}/pessoas`;
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
+  requestOptions: Object = {
+    headers: this.headers,
+  };
+  requestOptionsReturnTypeText: Object = {
+    ...this.requestOptions,
+    responseType: 'text',
+  };
 
   constructor(private http: HttpClient) {}
 
   buscarUsuario(id: number): Observable<Usuario> {
     return this.http.get<Usuario>(`${this.usuariosApiUrl}/${id}`).pipe(
-      tap((foundedUser) => console.log(foundedUser)),
+      tap(() => {}),
       catchError(this.handleError<Usuario>('findUserById'))
     );
   }
@@ -40,14 +48,18 @@ export class UsuarioService {
   }
 
   salvarUsuario(usuario: Usuario): Observable<any> {
-    return this.http
-      .post(`${this.usuariosApiUrl}`, usuario)
-      .pipe(tap((response) => console.log(response)));
+    return this.http.post(
+      `${this.usuariosApiUrl}`,
+      usuario,
+      this.requestOptionsReturnTypeText
+    );
   }
 
   updateUsuario(usuario: Usuario): Observable<any> {
-    return this.http
-      .put(`${this.usuariosApiUrl}/${usuario.id}`, usuario)
-      .pipe(tap((response) => console.log(response)));
+    return this.http.put(
+      `${this.usuariosApiUrl}/${usuario.id}`,
+      usuario,
+      this.requestOptionsReturnTypeText
+    );
   }
 }
