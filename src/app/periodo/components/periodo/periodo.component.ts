@@ -4,10 +4,9 @@ import { Component } from '@angular/core';
 import { Periodo } from '../../domain/periodo';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { Usuario } from 'src/app/usuario/domain/usuario';
-import { USUARIOS } from 'src/app/usuario/mock-usuario';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 @Component({
   selector: 'app-periodo',
@@ -15,13 +14,17 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./periodo.component.css'],
 })
 export class PeriodoComponent {
-  periodo?: Periodo;
+  periodo: Periodo = {
+    id: 0,
+    descricao: '',
+    pagadores: [],
+    isFechado: false,
+    valorTotal: 0,
+  };
   titulo: string = '';
   idPeriodo?: number;
 
-  dropdownList: Usuario[] = [];
-  pagadoresSelected: Usuario[] = [];
-  dropdownSettings: IDropdownSettings = {};
+  usuarios: Usuario[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -34,7 +37,7 @@ export class PeriodoComponent {
     this.getIdFromRouteParam();
     this.setTitulo();
     this.getPeriodo();
-    this.setUpDropDownDivisores();
+    this.getUsuarios();
   }
 
   getIdFromRouteParam() {
@@ -48,56 +51,24 @@ export class PeriodoComponent {
   private getPeriodo() {
     if (this.idPeriodo) {
       this.buscarPeriodo(this.idPeriodo);
-    } else {
-      this.setPeriodo(this.criarNovoPeriodo());
     }
   }
 
   private setPeriodo(periodo: Periodo) {
     this.periodo = periodo;
-    this.pagadoresSelected = periodo.pagadores;
   }
 
   private buscarPeriodo(id: number) {
-    let periodoEncontrato: Periodo = this.criarNovoPeriodo();
     this.periodoService.buscarPeriodo(id).subscribe({
       next: (periodo) => this.setPeriodo(periodo),
       error: (error) => alert(error.message),
     });
   }
 
-  private criarNovoPeriodo(): Periodo {
-    return {
-      id: 0,
-      descricao: '',
-      pagadores: [],
-      isFechado: false,
-      valorTotal: 0,
-    };
-  }
-
-  setUpDropDownDivisores() {
+  getUsuarios() {
     this.usuarioService
       .getUsuarios()
-      .subscribe((usuarios) => (this.dropdownList = usuarios));
-
-    this.dropdownSettings = {
-      singleSelection: false,
-      idField: 'id',
-      textField: 'nome',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 3,
-      allowSearchFilter: true,
-    };
-  }
-
-  onItemSelect(item: any) {
-    if (this.periodo) this.periodo.pagadores = this.pagadoresSelected;
-  }
-  onSelectAll(items: any) {
-    this.pagadoresSelected = items;
-    if (this.periodo) this.periodo.pagadores = this.pagadoresSelected;
+      .subscribe((usuarios) => (this.usuarios = usuarios));
   }
 
   salvar() {

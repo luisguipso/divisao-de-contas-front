@@ -22,10 +22,12 @@
               </div>
             </div>
             <div class="row mb-3">
-              <ng-multiselect-dropdown [placeholder]="'Selecione quem vai dividir'" [settings]="dropdownSettings"
+              <!-- <ng-multiselect-dropdown [placeholder]="'Selecione quem vai dividir'" [settings]="dropdownSettings"
                 [data]="dropdownList" [(ngModel)]="pagadoresSelected" (onSelect)="onItemSelect($event)"
                 (onSelectAll)="onSelectAll($event)" name="divisores">
-              </ng-multiselect-dropdown>
+              </ng-multiselect-dropdown> -->
+              <p-multiSelect class="no-margin" [options]="usuarios" [(ngModel)]="periodo.pagadores" optionLabel="nome"
+                name="pagadores"></p-multiSelect>
             </div>
           </div>
           <div class="row">&nbsp;</div>
