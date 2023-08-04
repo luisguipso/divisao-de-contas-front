@@ -1,10 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PeriodoService } from '../../service/periodo.service';
 import { Periodo } from '../../domain/periodo';
 import { DespesaService } from 'src/app/despesa/service/despesa.service';
 import { Despesa } from 'src/app/despesa/domain/despesa';
-import { Observable, switchMap } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-periodo',

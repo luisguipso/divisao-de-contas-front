@@ -1,11 +1,11 @@
-import { ValorPorUsuario } from './../../domain/valor-por-usuario-dto';
 import { DespesaService } from 'src/app/despesa/service/despesa.service';
 import { ActivatedRoute } from '@angular/router';
-import { Periodo } from '../../domain/periodo';
-import { PeriodoService } from './../../service/periodo.service';
 import { Component } from '@angular/core';
 import { Observable, combineLatest } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
+import { Periodo } from 'src/app/periodo/domain/periodo';
+import { ValorPorUsuario } from '../../domain/valor-por-usuario-dto';
+import { PeriodoService } from 'src/app/periodo/service/periodo.service';
 
 @Component({
   selector: 'app-extrato-periodo',
