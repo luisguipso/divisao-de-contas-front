@@ -34,9 +34,7 @@ export class ExtratoPeriodoComponent {
       ([valoresDevidos, valoresPagos]) => {
         this.valoresDevidos = valoresDevidos;
         this.valoresPagos = valoresPagos;
-        this.valoresCalculados = valoresDevidos.map((valoresDevidos) =>
-          this.getValorCalculado(valoresDevidos, valoresPagos)
-        );
+        this.calculaValoresDevidosDosUsuarios();
       }
     );
   }
@@ -53,30 +51,45 @@ export class ExtratoPeriodoComponent {
     return this.despesaService.buscarValorDevidoPorUsuarioNoPeriodo(periodoId);
   }
 
-  calcularValor(valoresDevidos: ValorPorUsuario[]): ValorPorUsuario[] {
-    return valoresDevidos.map((valoresDevidos) =>
-      this.getValorCalculado(valoresDevidos, this.valoresPagos)
+  calculaValoresDevidosDosUsuarios() {
+    this.valoresCalculados = this.valoresPagos.map((valoresPagosPorUsuario) =>
+      this.calculaValorDevido(valoresPagosPorUsuario, this.valoresDevidos)
     );
   }
 
-  getValorCalculado(
-    valorDevidoPeloUsuario: ValorPorUsuario,
-    valoresPagos: ValorPorUsuario[]
+  calculaValorDevido(
+    valoresPagos: ValorPorUsuario,
+    valoresDevidos: ValorPorUsuario[]
   ): ValorPorUsuario {
-    const pagoPeloUsuario = valoresPagos.find(
-      (valorPagoPorUsuario: ValorPorUsuario) =>
-        valorPagoPorUsuario.usuario.id === valorDevidoPeloUsuario.usuario.id
+    let usuarioId: number = valoresPagos.usuario.id!;
+    const devidoPeloUsuario = this.getValoresDevidosPeloUsuario(
+      valoresDevidos,
+      usuarioId
     );
-    const valorCalculado: number = pagoPeloUsuario
-      ? valorDevidoPeloUsuario.valorTotal - pagoPeloUsuario.valorTotal
-      : valorDevidoPeloUsuario.valorTotal;
+    const valorCalculado: number = devidoPeloUsuario
+      ? valoresPagos.valorTotal - devidoPeloUsuario.valorTotal
+      : valoresPagos.valorTotal;
     return {
-      usuario: valorDevidoPeloUsuario.usuario,
+      usuario: valoresPagos.usuario,
       valorTotal: valorCalculado,
     };
   }
 
-  isNegativo(valor: number): boolean {
+  private getValoresDevidosPeloUsuario(
+    valoresDevidos: ValorPorUsuario[],
+    usuarioId: number
+  ) {
+    return valoresDevidos.find(
+      (valoresDevidosDoUsuario: ValorPorUsuario) =>
+        valoresDevidosDoUsuario.usuario.id === usuarioId
+    );
+  }
+
+  devePagar(valor: number): boolean {
     return valor <= 0;
+  }
+
+  getResultTextColor(valor: number): string {
+    return this.devePagar(valor) ? 'text-danger' : 'text-success';
   }
 }
