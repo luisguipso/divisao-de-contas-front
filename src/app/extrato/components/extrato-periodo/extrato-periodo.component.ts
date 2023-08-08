@@ -1,11 +1,8 @@
 import { DespesaService } from 'src/app/despesa/service/despesa.service';
-import { ActivatedRoute } from '@angular/router';
 import { Component, Input } from '@angular/core';
-import { Observable, combineLatest, forkJoin, from, of } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
+import { Observable, forkJoin } from 'rxjs';
 import { Periodo } from 'src/app/periodo/domain/periodo';
 import { ValorPorUsuario } from '../../domain/valor-por-usuario-dto';
-import { PeriodoService } from 'src/app/periodo/service/periodo.service';
 
 @Component({
   selector: 'extrato-periodo',
