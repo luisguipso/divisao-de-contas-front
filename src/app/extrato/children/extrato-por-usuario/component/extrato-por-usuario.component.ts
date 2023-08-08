@@ -1,21 +1,21 @@
-import { DespesaService } from 'src/app/despesa/service/despesa.service';
 import { Component, Input } from '@angular/core';
 import { Observable, forkJoin } from 'rxjs';
 import { Periodo } from 'src/app/periodo/domain/periodo';
-import { ValorPorUsuario } from '../../domain/valor-por-usuario-dto';
+import { ValorPorUsuario } from '../domain/valor-por-usuario-dto';
+import { ExtratoPorUsuarioService } from '../service/extrato-por-usuario.service';
 
 @Component({
-  selector: 'extrato-periodo',
-  templateUrl: './extrato-periodo.component.html',
-  styleUrls: ['./extrato-periodo.component.css'],
+  selector: 'extrato-por-usuario',
+  templateUrl: './extrato-por-usuario.component.html',
+  styleUrls: ['./extrato-por-usuario.component.css'],
 })
-export class ExtratoPeriodoComponent {
+export class ExtratoPorUsuarioComponent {
   @Input() periodo?: Periodo;
   valoresPagos: ValorPorUsuario[] = [];
   valoresDevidos: ValorPorUsuario[] = [];
   valoresCalculados: ValorPorUsuario[] = [];
 
-  constructor(private despesaService: DespesaService) {}
+  constructor(private extratoService: ExtratoPorUsuarioService) {}
 
   ngOnInit(): void {
     if (this.periodo) this.handlePeriodoData(this.periodo);
@@ -39,13 +39,13 @@ export class ExtratoPeriodoComponent {
   buscarValorPagoPorUsuarioNoPeriodo(
     periodoId: number
   ): Observable<ValorPorUsuario[]> {
-    return this.despesaService.buscarValorPagoPorUsuarioNoPeriodo(periodoId);
+    return this.extratoService.buscarValorPagoPorUsuarioNoPeriodo(periodoId);
   }
 
   buscarValorDevidoPorUsuarioNoPeriodo(
     periodoId: number
   ): Observable<ValorPorUsuario[]> {
-    return this.despesaService.buscarValorDevidoPorUsuarioNoPeriodo(periodoId);
+    return this.extratoService.buscarValorDevidoPorUsuarioNoPeriodo(periodoId);
   }
 
   calculaValoresDevidosDosUsuarios() {

@@ -2,7 +2,7 @@
   <div class="row">
     <p-tabView>
       <p-tabPanel header="Extrato de Divisão">
-        <extrato-periodo *ngIf="periodo" [periodo]="periodo"></extrato-periodo>
+        <extrato-por-usuario *ngIf="periodo" [periodo]="periodo"></extrato-por-usuario>
       </p-tabPanel>
       <p-tabPanel header="Extrato Induvidual">
         <extrato-individual *ngIf="periodo" [periodo]="periodo"></extrato-individual>

@@ -6,7 +6,7 @@ import { PeriodoDetailsComponent } from './periodo/components/periodo-details/pe
 import { PeriodoComponent } from './periodo/components/periodo/periodo.component';
 import { UsuarioComponent } from './usuario/components/usuario/usuario.component';
 import { ListaUsuariosComponent } from './usuario/components/lista-usuarios/lista-usuarios.component';
-import { ExtratoComponent } from './extrato/components/extrato/extrato.component';
+import { ExtratoComponent } from './extrato/component/extrato.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/lista-periodos', pathMatch: 'full' },

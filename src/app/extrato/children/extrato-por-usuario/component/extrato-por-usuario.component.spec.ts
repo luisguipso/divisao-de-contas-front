@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExtratoPeriodoComponent } from './extrato-periodo.component';
+import { ExtratoPorUsuarioComponent } from './extrato-por-usuario.component';
 
 describe('ExtratoPeriodoComponent', () => {
-  let component: ExtratoPeriodoComponent;
-  let fixture: ComponentFixture<ExtratoPeriodoComponent>;
+  let component: ExtratoPorUsuarioComponent;
+  let fixture: ComponentFixture<ExtratoPorUsuarioComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ExtratoPeriodoComponent],
+      declarations: [ExtratoPorUsuarioComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ExtratoPeriodoComponent);
+    fixture = TestBed.createComponent(ExtratoPorUsuarioComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
