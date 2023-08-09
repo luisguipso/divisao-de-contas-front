@@ -8,7 +8,7 @@ import { API_URL } from 'src/main';
   providedIn: 'root',
 })
 export class ExtratoPorUsuarioService {
-  apiUrl = API_URL + '/extratoPorUsuario';
+  apiUrl = API_URL + '/extrato/usuario';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   requestOptions: Object = {
     headers: this.headers,
