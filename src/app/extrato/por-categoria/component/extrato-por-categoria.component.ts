@@ -4,9 +4,9 @@ import { Periodo } from 'src/app/periodo/domain/periodo';
 
 @Component({
   selector: 'extrato-individual',
-  templateUrl: './extrato-individual-periodo.component.html',
-  styleUrls: ['./extrato-individual-periodo.component.css'],
+  templateUrl: './extrato-por-categoria.component.html',
+  styleUrls: ['./extrato-por-categoria.component.css'],
 })
-export class ExtratoIndividualPeriodoComponent {
+export class ExtratoPorCategoriaComponent {
   @Input() periodo?: Periodo;
 }

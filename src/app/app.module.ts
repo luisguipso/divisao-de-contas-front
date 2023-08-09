@@ -16,7 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ExtratoComponent } from './extrato/component/extrato.component';
 import { TabViewModule } from 'primeng/tabview';
 import { ExtratoPorUsuarioComponent } from './extrato/por-usuario/component/extrato-por-usuario.component';
-import { ExtratoIndividualPeriodoComponent } from './extrato/por-categoria/component/extrato-individual-periodo.component';
+import { ExtratoPorCategoriaComponent } from './extrato/por-categoria/component/extrato-por-categoria.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,7 @@ import { ExtratoIndividualPeriodoComponent } from './extrato/por-categoria/compo
     UsuarioComponent,
     SidenavComponent,
     ListaUsuariosComponent,
-    ExtratoIndividualPeriodoComponent,
+    ExtratoPorCategoriaComponent,
     ExtratoComponent,
   ],
   imports: [
