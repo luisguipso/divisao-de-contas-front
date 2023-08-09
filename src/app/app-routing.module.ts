@@ -7,6 +7,8 @@ import { PeriodoComponent } from './periodo/components/periodo/periodo.component
 import { UsuarioComponent } from './usuario/components/usuario/usuario.component';
 import { ListaUsuariosComponent } from './usuario/components/lista-usuarios/lista-usuarios.component';
 import { ExtratoComponent } from './extrato/component/extrato.component';
+import { CategoriaComponent } from './categoria/components/categoria/categoria.component';
+import { ListaCategoriasComponent } from './categoria/components/lista-categorias/lista-categorias.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/lista-periodos', pathMatch: 'full' },
@@ -20,6 +22,9 @@ const routes: Routes = [
   { path: 'usuarios', component: ListaUsuariosComponent },
   { path: 'usuario', component: UsuarioComponent },
   { path: 'usuario/:id', component: UsuarioComponent },
+  { path: 'lista-categorias', component: ListaCategoriasComponent },
+  { path: 'categoria', component: CategoriaComponent },
+  { path: 'categoria/:id', component: CategoriaComponent },
 ];
 
 @NgModule({

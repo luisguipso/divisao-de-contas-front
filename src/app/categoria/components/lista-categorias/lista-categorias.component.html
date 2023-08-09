@@ -1,0 +1,19 @@
+<div class="container-fluid">
+  <div class="row justify-content-between">
+    <div class="col my-auto">
+      <h2>Categorias</h2>
+    </div>
+    <div class="col-auto">
+      <button type="button" class="btn btn-outline-info" routerLink="/categoria">Nova</button>
+    </div>
+  </div>
+  <div class="row">&nbsp;</div>
+
+  <div *ngFor="let categoria of categorias">
+    <div class="row justify-content-between  custom-table-row border-top" routerLink="/categoria/{{categoria.id}}">
+      <div class="col-4">
+        {{categoria.nome}}
+      </div>
+    </div>
+  </div>
+</div>

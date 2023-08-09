@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          <h2>{{titulo}}</h2>
+        </div>
+      </div>
+      <div class="row">&nbsp;</div>
+      <div class="row">
+        <form *ngIf="categoria">
+          <div class="container-fluid">
+            <div class="row mb-3">
+              <label for="descricao" class="form-label">Descrição</label>
+              <input type="text" class="form-control" id="descricao" [(ngModel)]="categoria.nome" name="descricao">
+            </div>
+            <div class="row">&nbsp;</div>
+            <div class="row justify-content-between">
+              <div class="col-auto">
+                <button type="button" class="btn btn-outline-secondary" (click)="goBack()">Cancelar</button>
+              </div>
+              <div class="col-auto">
+                <button type="button" class="btn btn-primary" (click)="salvar()">Salvar</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

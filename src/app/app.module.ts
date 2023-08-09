@@ -17,6 +17,8 @@ import { ExtratoComponent } from './extrato/component/extrato.component';
 import { TabViewModule } from 'primeng/tabview';
 import { ExtratoPorUsuarioComponent } from './extrato/por-usuario/component/extrato-por-usuario.component';
 import { ExtratoPorCategoriaComponent } from './extrato/por-categoria/component/extrato-por-categoria.component';
+import { CategoriaComponent } from './categoria/components/categoria/categoria.component';
+import { ListaCategoriasComponent } from './categoria/components/lista-categorias/lista-categorias.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { ExtratoPorCategoriaComponent } from './extrato/por-categoria/component/
     ListaUsuariosComponent,
     ExtratoPorCategoriaComponent,
     ExtratoComponent,
+    CategoriaComponent,
+    ListaCategoriasComponent,
   ],
   imports: [
     BrowserModule,

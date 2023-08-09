@@ -10,6 +10,7 @@ export class SidenavComponent {
   navData = [
     { routeLink: 'usuarios', icon: 'fal fa-user', label: 'Usuário' },
     { routeLink: 'lista-periodos', icon: 'fal fa-list', label: 'Periodos' },
+    { routeLink: 'lista-categorias', icon: 'fal fa-list', label: 'Categorias' },
   ];
 
   fechaNavBar() {
