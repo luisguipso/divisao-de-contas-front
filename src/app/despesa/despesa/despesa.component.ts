@@ -6,6 +6,8 @@ import { Location } from '@angular/common';
 import { Usuario } from 'src/app/usuario/domain/usuario';
 import { USUARIOS } from 'src/app/usuario/mock-usuario';
 import { Periodo } from 'src/app/periodo/domain/periodo';
+import { Categoria } from 'src/app/categoria/domain/categoria';
+import { CategoriaService } from 'src/app/categoria/service/categoria.service';
 
 @Component({
   selector: 'app-despesa',
@@ -23,17 +25,21 @@ export class DespesaComponent {
   };
   titulo: string = '';
   idDespesa?: number;
+  categorias: Categoria[] = [];
+  selectedCategoriaName?: string;
 
   constructor(
     private route: ActivatedRoute,
     private location: Location,
-    private despesaService: DespesaService
+    private despesaService: DespesaService,
+    private categoriaService: CategoriaService
   ) {}
 
   ngOnInit(): void {
     this.setId();
     this.setTitulo();
-    this.setDespesa();
+    this.getDespesa();
+    this.getCategorias();
   }
 
   setId() {
@@ -44,7 +50,7 @@ export class DespesaComponent {
     this.titulo = this.idDespesa ? 'Editar Despesa' : 'Nova Despesa';
   }
 
-  private setDespesa() {
+  private getDespesa() {
     if (this.idDespesa) {
       this.buscaDespesa(this.idDespesa);
     }
@@ -66,11 +72,24 @@ export class DespesaComponent {
       console.log('empty despesa');
       return;
     }
+
+    this.setCategoria();
     if (this.despesa.id) {
       this.updadeDespesa(this.despesa);
     } else {
       this.salvarDespesa(this.despesa);
     }
+  }
+
+  setCategoria() {
+    let categoriaSelecionada = this.getCategoriaSelecionada();
+    this.despesa.categoria = categoriaSelecionada;
+  }
+
+  getCategoriaSelecionada(): Categoria | undefined {
+    return this.categorias.find(
+      (each) => each.nome === this.selectedCategoriaName
+    );
   }
 
   salvarDespesa(despesa: Despesa) {
@@ -102,5 +121,16 @@ export class DespesaComponent {
     // Replace commas with periods
     this.despesa.valor = Number(inputValue.replace(/,/g, '.'));
     console.log(inputValue);
+  }
+
+  getCategorias() {
+    this.categoriaService
+      .getCategorias(1, 10)
+      .subscribe((categorias) => (this.categorias = categorias));
+  }
+
+  onSelectCategoria(selecionada: any) {
+    console.log(selecionada);
+    this.selectedCategoriaName = selecionada;
   }
 }
