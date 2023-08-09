@@ -8,7 +8,7 @@ describe('ExtratoIndividualPeriodoComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ExtratoIndividualPeriodoComponent]
+      declarations: [ExtratoIndividualPeriodoComponent],
     });
     fixture = TestBed.createComponent(ExtratoIndividualPeriodoComponent);
     component = fixture.componentInstance;

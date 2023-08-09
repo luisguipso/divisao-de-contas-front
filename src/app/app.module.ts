@@ -13,10 +13,10 @@ import { ListaUsuariosComponent } from './usuario/components/lista-usuarios/list
 import { HttpClientModule } from '@angular/common/http';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ExtratoIndividualPeriodoComponent } from './extrato/children/extrato-individual-periodo/extrato-individual-periodo.component';
 import { ExtratoComponent } from './extrato/component/extrato.component';
 import { TabViewModule } from 'primeng/tabview';
-import { ExtratoPorUsuarioComponent } from './extrato/children/extrato-por-usuario/component/extrato-por-usuario.component';
+import { ExtratoPorUsuarioComponent } from './extrato/por-usuario/component/extrato-por-usuario.component';
+import { ExtratoIndividualPeriodoComponent } from './extrato/por-categoria/component/extrato-individual-periodo.component';
 
 @NgModule({
   declarations: [

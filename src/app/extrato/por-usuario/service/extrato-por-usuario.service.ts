@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ValorPorUsuario } from '../domain/valor-por-usuario-dto';
+import { ValorPorUsuario } from '../domain/valor-por-usuario';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { API_URL } from 'src/main';

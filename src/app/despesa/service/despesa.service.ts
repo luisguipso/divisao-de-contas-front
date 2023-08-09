@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { Despesa } from '../domain/despesa';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { API_URL } from 'src/main';
-import { ValorPorUsuario } from 'src/app/extrato/extrato-por-usuario/domain/valor-por-usuario-dto';
 
 @Injectable({
   providedIn: 'root',

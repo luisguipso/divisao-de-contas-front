@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Observable, forkJoin } from 'rxjs';
 import { Periodo } from 'src/app/periodo/domain/periodo';
-import { ValorPorUsuario } from '../domain/valor-por-usuario-dto';
+import { ValorPorUsuario } from '../domain/valor-por-usuario';
 import { ExtratoPorUsuarioService } from '../service/extrato-por-usuario.service';
 
 @Component({
