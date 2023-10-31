@@ -1,1 +1,15 @@
-periodo
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col">
+      <h3>{{usuarioLogado?.nome}}</h3>
+    </div>
+    <div class="col-auto">
+      <h3>{{periodo?.descricao}}</h3>
+    </div>
+  </div>
+
+  <div class="row justify-content-between" *ngFor="let valorPorCategoria of valoresPorCategoria">
+    <div class="col">{{valorPorCategoria.categoria.nome}}</div>
+    <div class="col-auto">{{valorPorCategoria.valorTotal}}</div>
+  </div>
+</div>
