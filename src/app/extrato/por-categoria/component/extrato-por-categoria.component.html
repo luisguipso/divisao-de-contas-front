@@ -1,15 +1,30 @@
 <div class="container-fluid">
   <div class="row justify-content-center">
-    <div class="col">
+    <div class="col-auto">
       <h3>{{usuarioLogado?.nome}}</h3>
     </div>
     <div class="col-auto">
       <h3>{{periodo?.descricao}}</h3>
     </div>
-  </div>
 
-  <div class="row justify-content-between" *ngFor="let valorPorCategoria of valoresPorCategoria">
-    <div class="col">{{valorPorCategoria.categoria.nome}}</div>
-    <div class="col-auto">{{valorPorCategoria.valorTotal}}</div>
+    <div class="col-auto">
+      <h3>{{valorTotal | currency: 'BRL'}}</h3>
+    </div>
   </div>
+  <div class="row">&nbsp;</div>
+
+  <div class="card">
+    <div class="card-header">
+      <h4>Valores Devidos</h4>
+    </div>
+    <div class="list-group list-group-flush" *ngFor="let valorPorCategoria of valoresPorCategoria">
+      <div class="list-group-item">
+        <div class="row">
+          <div class="col">{{valorPorCategoria.categoria.nome}}</div>
+          <div class="col-auto">{{valorPorCategoria.valorTotal | currency: 'BRL'}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">&nbsp;</div>
 </div>
