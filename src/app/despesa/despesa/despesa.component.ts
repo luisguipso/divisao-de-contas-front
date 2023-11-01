@@ -95,7 +95,7 @@ export class DespesaComponent {
   salvarDespesa(despesa: Despesa) {
     this.despesaService.salvarDespesa(despesa).subscribe({
       next: () => {
-        alert(`Despesa: ${despesa.descricao} criada com sucesso!`);
+        console.log(`Despesa: ${despesa.descricao} criada com sucesso!`);
         this.goBack();
       },
       error: (error) => alert(error.message),
@@ -104,8 +104,10 @@ export class DespesaComponent {
 
   updadeDespesa(despesa: Despesa) {
     this.despesaService.atualizarDespesa(despesa).subscribe({
-      next: () =>
-        alert(`Despesa: ${despesa.descricao} atualizada com sucesso!`),
+      next: () => {
+        console.log(`Despesa: ${despesa.descricao} atualizada com sucesso!`);
+        this.goBack();
+      },
       error: (error) => alert(error.message),
     });
   }
