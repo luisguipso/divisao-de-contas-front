@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -10,7 +11,6 @@ import { PeriodoComponent } from './periodo/components/periodo/periodo.component
 import { UsuarioComponent } from './usuario/components/usuario/usuario.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { ListaUsuariosComponent } from './usuario/components/lista-usuarios/lista-usuarios.component';
-import { HttpClientModule } from '@angular/common/http';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ExtratoComponent } from './extrato/component/extrato.component';
@@ -19,7 +19,8 @@ import { ExtratoPorUsuarioComponent } from './extrato/por-usuario/component/extr
 import { ExtratoPorCategoriaComponent } from './extrato/por-categoria/component/extrato-por-categoria.component';
 import { CategoriaComponent } from './categoria/components/categoria/categoria.component';
 import { ListaCategoriasComponent } from './categoria/components/lista-categorias/lista-categorias.component';
-import { LoginComponent } from './login/login/login.component';
+import { LoginComponent } from './auth/login/login.component';
+import { AuthInterceptor } from './auth/interceptor/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,9 @@ import { LoginComponent } from './login/login/login.component';
     MultiSelectModule,
     TabViewModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

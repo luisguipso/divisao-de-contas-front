@@ -1,9 +1,4 @@
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-  HttpParams,
-} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SERVER_URL } from 'src/main';
 import { LoginResponse } from '../domain/loginResponse';
@@ -11,7 +6,7 @@ import { catchError, map } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class LoginService {
+export class AuthService {
   apiUrl = SERVER_URL + '/login';
   headers = new HttpHeaders().set(
     'Content-Type',
@@ -52,6 +47,18 @@ export class LoginService {
   }
 
   isLoggedIn() {
-    return localStorage.getItem('currentUser') ? true : false;
+    return this.getCurrentUser() ? true : false;
+  }
+
+  getCurrentUser(): LoginResponse | undefined {
+    let currentUserJson = localStorage.getItem('currentUser');
+    if (!currentUserJson) return undefined;
+
+    return JSON.parse(currentUserJson);
+  }
+
+  getAuthorizationToken(): string {
+    let current = this.getCurrentUser();
+    return current ? current.accessToken : '';
   }
 }

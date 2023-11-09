@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoginService } from '../service/login.service';
+import { AuthService } from '../service/auth.service';
 import { LoginResponse } from '../domain/loginResponse';
 import { Router } from '@angular/router';
 
@@ -14,22 +14,25 @@ export class LoginComponent {
   loginError?: string;
   error?: {};
 
-  constructor(private router: Router, private loginService: LoginService) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   login() {
-    if (!this.username || !this.password)
-      throw new Error('Preencha usuário e senha!');
-    this.loginService.login(this.username, this.password).subscribe({
+    if (!this.username || !this.password) {
+      this.loginError = 'Preencha usuário e senha!';
+      throw new Error(this.loginError);
+    }
+
+    this.authService.login(this.username, this.password).subscribe({
       next: (data) => {
-        if (this.loginService.isLoggedIn()) {
+        if (this.authService.isLoggedIn()) {
           this.router.navigate(['/']);
         } else {
-          this.loginError = 'email or password is incorrect.';
+          this.loginError = 'Usuário ou senha incorreta.';
         }
       },
       error: (error) => (this.error = error),
     });
-    console.log(this.loginService.loginResponse?.accessToken);
+    console.log(this.authService.loginResponse?.accessToken);
   }
 
   cadastrarNovoUsuario() {

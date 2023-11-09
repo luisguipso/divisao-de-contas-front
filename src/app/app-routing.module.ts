@@ -9,7 +9,7 @@ import { ListaUsuariosComponent } from './usuario/components/lista-usuarios/list
 import { ExtratoComponent } from './extrato/component/extrato.component';
 import { CategoriaComponent } from './categoria/components/categoria/categoria.component';
 import { ListaCategoriasComponent } from './categoria/components/lista-categorias/lista-categorias.component';
-import { LoginComponent } from './login/login/login.component';
+import { LoginComponent } from './auth/login/login.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/lista-periodos', pathMatch: 'full' },

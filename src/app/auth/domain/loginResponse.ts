@@ -1,3 +1,3 @@
 export interface LoginResponse {
-  accessToken: String;
+  accessToken: string;
 }
