@@ -37,7 +37,8 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   private handleError(error: HttpErrorResponse) {
-    if (this.isUnauthorizedOrForbiden(error)) this.router.navigate(['/login']);
+    if (this.isUnauthorizedOrForbiden(error) && !error.url?.includes('/login'))
+      this.router.navigate(['/login']);
   }
 
   private isUnauthorizedOrForbiden(error: HttpErrorResponse) {
