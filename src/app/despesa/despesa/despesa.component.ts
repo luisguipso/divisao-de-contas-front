@@ -26,7 +26,7 @@ export class DespesaComponent {
   titulo: string = '';
   idDespesa?: number;
   categorias: Categoria[] = [];
-  selectedCategoriaName?: string;
+  selectedCategoriaName?: String;
 
   constructor(
     private route: ActivatedRoute,
@@ -57,9 +57,11 @@ export class DespesaComponent {
   }
 
   private buscaDespesa(id: number) {
-    this.despesaService
-      .getDespesa(id)
-      .subscribe((despesa) => (this.despesa = despesa));
+    this.despesaService.getDespesa(id).subscribe((despesa) => {
+      this.despesa = despesa;
+      const categoriaName = despesa.categoria?.nome;
+      if (categoriaName) this.setCategoriaSelecionada(categoriaName);
+    });
   }
 
   getUsuarioLogado(): Usuario {
@@ -84,6 +86,10 @@ export class DespesaComponent {
   setCategoria() {
     let categoriaSelecionada = this.getCategoriaSelecionada();
     this.despesa.categoria = categoriaSelecionada;
+  }
+
+  setCategoriaSelecionada(categoriaName: String) {
+    this.selectedCategoriaName = categoriaName;
   }
 
   getCategoriaSelecionada(): Categoria | undefined {
