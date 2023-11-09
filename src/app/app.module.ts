@@ -19,6 +19,7 @@ import { ExtratoPorUsuarioComponent } from './extrato/por-usuario/component/extr
 import { ExtratoPorCategoriaComponent } from './extrato/por-categoria/component/extrato-por-categoria.component';
 import { CategoriaComponent } from './categoria/components/categoria/categoria.component';
 import { ListaCategoriasComponent } from './categoria/components/lista-categorias/lista-categorias.component';
+import { LoginComponent } from './login/login/login.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ListaCategoriasComponent } from './categoria/components/lista-categoria
     ExtratoComponent,
     CategoriaComponent,
     ListaCategoriasComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

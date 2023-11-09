@@ -9,6 +9,7 @@ import { ListaUsuariosComponent } from './usuario/components/lista-usuarios/list
 import { ExtratoComponent } from './extrato/component/extrato.component';
 import { CategoriaComponent } from './categoria/components/categoria/categoria.component';
 import { ListaCategoriasComponent } from './categoria/components/lista-categorias/lista-categorias.component';
+import { LoginComponent } from './login/login/login.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/lista-periodos', pathMatch: 'full' },
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'lista-categorias', component: ListaCategoriasComponent },
   { path: 'categoria', component: CategoriaComponent },
   { path: 'categoria/:id', component: CategoriaComponent },
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({

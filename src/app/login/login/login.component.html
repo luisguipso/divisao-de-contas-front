@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          <h2>Login</h2>
+        </div>
+      </div>
+      <div class="row">&nbsp;</div>
+      <div class="row">
+        <form>
+          <div class="container-fluid">
+            <div class="row mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input type="text" class="form-control" id="username" [(ngModel)]="username" name="username">
+            </div>
+            <div class="row mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="text" class="form-control" id="password" [(ngModel)]="password" name="password">
+            </div>
+            <div class="row mb-3">
+              <label *ngIf=(loginError) class="form-label text-danger">{{loginError}}</label>
+            </div>
+            <div class="row">&nbsp;</div>
+            <div class="row justify-content-between">
+              <div class="col-auto">
+                <button type="button" class="btn btn-outline-secondary"
+                  (click)="cadastrarNovoUsuario()">Cadastre-se</button>
+              </div>
+              <div class="col-auto">
+                <button type="button" class="btn btn-primary" (click)="login()">Login</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
