@@ -30,9 +30,15 @@ export class LoginComponent {
           this.loginError = 'Usuário ou senha incorreta.';
         }
       },
-      error: (error) => (this.error = error),
+      error: (error) => {
+        let errorMessage = error.error.message;
+        this.loginError =
+          errorMessage === 'User not found.'
+            ? 'Usuário não encontrado.'
+            : errorMessage;
+        throw new Error(this.loginError);
+      },
     });
-    console.log(this.authService.loginResponse?.accessToken);
   }
 
   cadastrarNovoUsuario() {

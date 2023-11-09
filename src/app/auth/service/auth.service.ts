@@ -29,19 +29,19 @@ export class AuthService {
       params,
     };
 
-    var postData = '?username=' + username + '&password=' + password;
+    var postData =
+      'username=' +
+      encodeURIComponent(username) +
+      '&password=' +
+      encodeURIComponent(password);
     return this.http
-      .post<LoginResponse>(this.apiUrl + postData, requestWithPagableParams)
+      .post<LoginResponse>(this.apiUrl, postData, requestWithPagableParams)
       .pipe(
         map((loginResponse) => {
           if (loginResponse) {
             this.loginResponse = loginResponse;
             localStorage.setItem('currentUser', JSON.stringify(loginResponse));
           }
-        }),
-        catchError((error) => {
-          console.error(error.message);
-          return error;
         })
       );
   }
