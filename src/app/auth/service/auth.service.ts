@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { SERVER_URL } from 'src/main';
 import { LoginResponse } from '../domain/loginResponse';
 import { catchError, map } from 'rxjs';
+import { Usuario } from 'src/app/usuario/domain/usuario';
 @Injectable({
   providedIn: 'root',
 })
@@ -34,18 +35,24 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    return this.getCurrentUser() ? true : false;
+    return this.getAuthenticationData() ? true : false;
   }
 
-  getCurrentUser(): LoginResponse | undefined {
+  getAuthenticationData(): LoginResponse | undefined {
     let currentUserJson = localStorage.getItem('currentUser');
     if (!currentUserJson) return undefined;
 
     return JSON.parse(currentUserJson);
   }
 
+  getUsuarioLogado(): Usuario {
+    let currentUser = this.getAuthenticationData();
+    if (!currentUser) throw new Error('Usuário não authenticado!');
+    return currentUser.usuarioLogado;
+  }
+
   getAuthorizationToken(): string {
-    let current = this.getCurrentUser();
+    let current = this.getAuthenticationData();
     return current ? current.accessToken : '';
   }
 }

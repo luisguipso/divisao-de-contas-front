@@ -1,3 +1,4 @@
+import { AuthService } from './../../auth/service/auth.service';
 import { Despesa } from './../domain/despesa';
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -32,7 +33,8 @@ export class DespesaComponent {
     private route: ActivatedRoute,
     private location: Location,
     private despesaService: DespesaService,
-    private categoriaService: CategoriaService
+    private categoriaService: CategoriaService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -65,8 +67,7 @@ export class DespesaComponent {
   }
 
   getUsuarioLogado(): Usuario {
-    //TODO
-    return USUARIOS[1];
+    return this.authService.getUsuarioLogado();
   }
 
   salvar() {
