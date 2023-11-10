@@ -8,42 +8,29 @@ import { catchError, map } from 'rxjs';
 })
 export class AuthService {
   apiUrl = SERVER_URL + '/login';
-  headers = new HttpHeaders().set(
-    'Content-Type',
-    'application/x-www-form-urlencoded'
-  );
-  requestOptions: Object = {
-    headers: this.headers,
-  };
   loginResponse?: LoginResponse;
 
   constructor(private http: HttpClient) {}
 
   login(username: string, password: string) {
     console.log('username: ' + username + ' password: ' + password);
-    let params = new HttpParams()
-      .set('username', username ? username : '')
-      .set('password', password ? password : '');
+    const params = new HttpParams()
+      .set('username', username)
+      .set('password', password);
 
-    let requestWithPagableParams = {
+    const options = {
       params,
+      withCredentials: true,
     };
 
-    var postData =
-      'username=' +
-      encodeURIComponent(username) +
-      '&password=' +
-      encodeURIComponent(password);
-    return this.http
-      .post<LoginResponse>(this.apiUrl, postData, requestWithPagableParams)
-      .pipe(
-        map((loginResponse) => {
-          if (loginResponse) {
-            this.loginResponse = loginResponse;
-            localStorage.setItem('currentUser', JSON.stringify(loginResponse));
-          }
-        })
-      );
+    return this.http.post<LoginResponse>(this.apiUrl, null, options).pipe(
+      map((loginResponse) => {
+        if (loginResponse) {
+          this.loginResponse = loginResponse;
+          localStorage.setItem('currentUser', JSON.stringify(loginResponse));
+        }
+      })
+    );
   }
 
   isLoggedIn() {
