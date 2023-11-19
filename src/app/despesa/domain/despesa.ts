@@ -11,4 +11,5 @@ export interface Despesa {
   dono: Usuario;
   periodo: Periodo;
   categoria?: Categoria;
+  pagador?: Usuario;
 }

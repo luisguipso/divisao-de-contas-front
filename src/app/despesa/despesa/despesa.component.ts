@@ -1,11 +1,10 @@
 import { AuthService } from './../../auth/service/auth.service';
 import { Despesa } from './../domain/despesa';
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DespesaService } from '../service/despesa.service';
 import { Location } from '@angular/common';
 import { Usuario } from 'src/app/usuario/domain/usuario';
-import { USUARIOS } from 'src/app/usuario/mock-usuario';
 import { Periodo } from 'src/app/periodo/domain/periodo';
 import { Categoria } from 'src/app/categoria/domain/categoria';
 import { CategoriaService } from 'src/app/categoria/service/categoria.service';
@@ -28,6 +27,7 @@ export class DespesaComponent {
   idDespesa?: number;
   categorias: Categoria[] = [];
   selectedCategoriaName?: String;
+  selectedPagadorName?: String;
 
   constructor(
     private route: ActivatedRoute,
@@ -40,7 +40,7 @@ export class DespesaComponent {
   ngOnInit(): void {
     this.setId();
     this.setTitulo();
-    this.getDespesa();
+    this.setDespesa();
     this.getCategorias();
   }
 
@@ -52,13 +52,13 @@ export class DespesaComponent {
     this.titulo = this.idDespesa ? 'Editar Despesa' : 'Nova Despesa';
   }
 
-  private getDespesa() {
+  private setDespesa() {
     if (this.idDespesa) {
-      this.buscaDespesa(this.idDespesa);
+      this.buscarDespesa(this.idDespesa);
     }
   }
 
-  private buscaDespesa(id: number) {
+  private buscarDespesa(id: number): void {
     this.despesaService.getDespesa(id).subscribe((despesa) => {
       this.despesa = despesa;
       const categoriaName = despesa.categoria?.nome;
@@ -66,17 +66,22 @@ export class DespesaComponent {
     });
   }
 
+  setCategoriaSelecionada(categoriaName: String): void {
+    this.selectedCategoriaName = categoriaName;
+  }
+
   getUsuarioLogado(): Usuario {
     return this.authService.getUsuarioLogado();
   }
 
-  salvar() {
+  salvar(): void {
     if (!this.despesa) {
       console.log('empty despesa');
       return;
     }
 
     this.setCategoria();
+    this.setPagador();
     if (this.despesa.id) {
       this.updadeDespesa(this.despesa);
     } else {
@@ -84,13 +89,8 @@ export class DespesaComponent {
     }
   }
 
-  setCategoria() {
-    let categoriaSelecionada = this.getCategoriaSelecionada();
-    this.despesa.categoria = categoriaSelecionada;
-  }
-
-  setCategoriaSelecionada(categoriaName: String) {
-    this.selectedCategoriaName = categoriaName;
+  setCategoria(): void {
+    this.despesa.categoria = this.getCategoriaSelecionada();
   }
 
   getCategoriaSelecionada(): Categoria | undefined {
@@ -99,7 +99,20 @@ export class DespesaComponent {
     );
   }
 
-  salvarDespesa(despesa: Despesa) {
+  setPagador(): void {
+    if (this.despesa.isDivisivel) return;
+
+    let pagadorSelecionado = this.getPagadorSelecionado();
+    this.despesa.pagador = pagadorSelecionado;
+  }
+
+  getPagadorSelecionado(): Usuario | undefined {
+    return this.despesa.periodo.pagadores.find(
+      (each) => each.nome === this.selectedPagadorName
+    );
+  }
+
+  salvarDespesa(despesa: Despesa): void {
     this.despesaService.salvarDespesa(despesa).subscribe({
       next: () => {
         console.log(`Despesa: ${despesa.descricao} criada com sucesso!`);
@@ -109,7 +122,7 @@ export class DespesaComponent {
     });
   }
 
-  updadeDespesa(despesa: Despesa) {
+  updadeDespesa(despesa: Despesa): void {
     this.despesaService.atualizarDespesa(despesa).subscribe({
       next: () => {
         console.log(`Despesa: ${despesa.descricao} atualizada com sucesso!`);
@@ -119,11 +132,11 @@ export class DespesaComponent {
     });
   }
 
-  goBack() {
+  goBack(): void {
     this.location.back();
   }
 
-  onInputValor(event: Event) {
+  onInputValor(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
     const inputValue = inputElement.value;
 
@@ -132,13 +145,13 @@ export class DespesaComponent {
     console.log(inputValue);
   }
 
-  getCategorias() {
+  getCategorias(): void {
     this.categoriaService
       .getCategorias(1, 10)
       .subscribe((categorias) => (this.categorias = categorias));
   }
 
-  onSelectCategoria(selecionada: any) {
+  onSelectCategoria(selecionada: any): void {
     console.log(selecionada);
     this.selectedCategoriaName = selecionada;
   }

@@ -39,6 +39,13 @@
                 <label class="form-check-label" for="isDividida">É dividida</label>
               </div>
             </div>
+            <div class="row mb-3 no-margin" *ngIf="!despesa.isDivisivel">
+              <label for="pagador" class="form-label">Pagador</label>
+              <select class="form-select" [(ngModel)]="selectedPagadorName" name="pagador">
+                <option *ngFor="let pagador of despesa.periodo.pagadores" [value]="pagador.nome">{{pagador.nome}}
+                </option>
+              </select>
+            </div>
             <div class="row mb-3">
               <label>Criado por: {{despesa.dono.nome}}</label>
             </div>
