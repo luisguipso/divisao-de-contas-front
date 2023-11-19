@@ -8,6 +8,7 @@ import { Usuario } from 'src/app/usuario/domain/usuario';
 import { Periodo } from 'src/app/periodo/domain/periodo';
 import { Categoria } from 'src/app/categoria/domain/categoria';
 import { CategoriaService } from 'src/app/categoria/service/categoria.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-despesa',
@@ -53,21 +54,26 @@ export class DespesaComponent {
   }
 
   private setDespesa() {
-    if (this.idDespesa) {
-      this.buscarDespesa(this.idDespesa);
-    }
-  }
-
-  private buscarDespesa(id: number): void {
-    this.despesaService.getDespesa(id).subscribe((despesa) => {
+    if (!this.idDespesa) return;
+    this.buscarDespesa(this.idDespesa).subscribe((despesa) => {
       this.despesa = despesa;
-      const categoriaName = despesa.categoria?.nome;
-      if (categoriaName) this.setCategoriaSelecionada(categoriaName);
+      this.setCategoriaSelecionada();
+      this.setPagadorSelecionado();
     });
   }
 
-  setCategoriaSelecionada(categoriaName: String): void {
-    this.selectedCategoriaName = categoriaName;
+  private buscarDespesa(id: number): Observable<Despesa> {
+    return this.despesaService.getDespesa(id);
+  }
+
+  setCategoriaSelecionada(): void {
+    const categoriaName = this.despesa.categoria?.nome;
+    if (categoriaName) this.selectedCategoriaName = categoriaName;
+  }
+
+  setPagadorSelecionado() {
+    const pagadorName = this.despesa.pagador?.nome;
+    if (pagadorName) this.selectedPagadorName = pagadorName;
   }
 
   getUsuarioLogado(): Usuario {
