@@ -3,8 +3,8 @@ import { Component, Input } from '@angular/core';
 import { Periodo } from 'src/app/periodo/domain/periodo';
 import { ExtratoPorCategoriaService } from '../service/extrato-por-categoria.service';
 import { Usuario } from 'src/app/usuario/domain/usuario';
-import { USUARIOS } from 'src/app/usuario/mock-usuario';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/auth/service/auth.service';
 
 @Component({
   selector: 'extrato-individual',
@@ -17,22 +17,14 @@ export class ExtratoPorCategoriaComponent {
   usuarioLogado?: Usuario;
   valorTotal?: number;
 
-  constructor(private extratoPorCategoriaService: ExtratoPorCategoriaService) {}
+  constructor(
+    private extratoPorCategoriaService: ExtratoPorCategoriaService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
-    this.getUsuarioLogado();
+    this.setUsuarioLogado();
     this.handlePeriodoData();
-  }
-
-  getIdUsuarioLogado(): number {
-    if (this.usuarioLogado && this.usuarioLogado.id)
-      return this.usuarioLogado.id;
-    else throw new Error('Usuário não identificado!');
-  }
-
-  getUsuarioLogado() {
-    //TODO
-    this.usuarioLogado = USUARIOS[1];
   }
 
   handlePeriodoData() {
@@ -55,10 +47,24 @@ export class ExtratoPorCategoriaComponent {
     );
   }
 
+  getIdUsuarioLogado(): number {
+    if (this.usuarioLogado && this.usuarioLogado.id)
+      return this.usuarioLogado.id;
+    else throw new Error('Usuário não identificado!');
+  }
+
   calcularValorTotal() {
     const valorInicial = 0;
     this.valorTotal = this.valoresPorCategoria
       .map((cada) => cada.valorTotal)
       .reduce((acumulador, cadaValor) => acumulador + cadaValor, valorInicial);
+  }
+
+  setUsuarioLogado(): void {
+    this.usuarioLogado = this.getUsuarioLogado();
+  }
+
+  getUsuarioLogado(): Usuario {
+    return this.authService.getUsuarioLogado();
   }
 }
