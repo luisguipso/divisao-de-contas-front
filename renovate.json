@@ -3,6 +3,9 @@
   "automerge": true,
   "timezone": "America/New_York",
   "schedule": ["after 10pm every weekday"],
+  "enabledManagers": [
+    "npm"
+  ],
   "packageRules": [
     {
       "matchPackageNames": ["*"],
