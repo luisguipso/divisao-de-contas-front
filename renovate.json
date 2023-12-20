@@ -2,7 +2,7 @@
   "extends": ["config:recommended"],
   "automerge": true,
   "timezone": "America/New_York",
-  "schedule": ["before 7am on Monday"],
+  "schedule": ["every day"],
   "packageRules": [
     {
       "matchPackageNames": ["*"],
