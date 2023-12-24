@@ -11,12 +11,13 @@
 
   <div class="card">
     <div class="card-header">
-      <h4>Valores Pagos</h4>
+      <h4>Valores Devidos</h4>
     </div>
-    <div class="list-group list-group-flush" *ngFor="let valorUsuario of valoresPagos">
+    <div class="list-group list-group-flush" *ngFor="let valorUsuario of valoresDevidos">
       <div class="list-group-item">
         <div class="row">
-          <div class="col">{{valorUsuario.usuario.nome}}</div>
+          <div class="col">{{valorUsuario.usuario.nome}} <span
+              class="text-secondary">({{valorUsuario.usuario.percentual}}%)</span></div>
           <div class="col-auto">{{valorUsuario.valorTotal | currency: 'BRL'}}</div>
         </div>
       </div>
@@ -26,13 +27,12 @@
 
   <div class="card">
     <div class="card-header">
-      <h4>Valores Devidos</h4>
+      <h4>Valores Pagos</h4>
     </div>
-    <div class="list-group list-group-flush" *ngFor="let valorUsuario of valoresDevidos">
+    <div class="list-group list-group-flush" *ngFor="let valorUsuario of valoresPagos">
       <div class="list-group-item">
         <div class="row">
-          <div class="col">{{valorUsuario.usuario.nome}} <span
-              class="text-secondary">({{valorUsuario.usuario.percentual}}%)</span></div>
+          <div class="col">{{valorUsuario.usuario.nome}}</div>
           <div class="col-auto">{{valorUsuario.valorTotal | currency: 'BRL'}}</div>
         </div>
       </div>
